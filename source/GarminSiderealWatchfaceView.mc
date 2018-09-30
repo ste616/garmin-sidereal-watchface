@@ -4,6 +4,7 @@ using Toybox.System;
 using Toybox.Lang;
 using Toybox.Application;
 using Toybox.Time.Gregorian;
+using Toybox.Time;
 
 class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
@@ -34,7 +35,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		quarterY = deviceSettings.screenHeight / 4;
 
 		// The radius of the clock markings.
-		arcRadius = deviceSettings.screenHeight / 2.5;
+		arcRadius = deviceSettings.screenHeight / 2.3;
 
 		// Now the radii of the three LST range segments.
 		sunRadius = deviceSettings.screenHeight / 2.0;
@@ -75,23 +76,20 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         // Format the time into a string.
         var timeStringLocal = formatTime(clockTime);
         var timeStringUTC = formatTime(utcTime);
+        var dateStringLocal = formatDate(clockTime);
+        var doyString = formatDOY();
+        var mjdString = formatMJD();
 
-        // Update the view
-        var localLabel = View.findDrawableById("TimeLabelLocal");
-        localLabel.setColor(Application.getApp().getProperty("ForegroundColor"));
-        localLabel.setText(timeStringLocal);
-		// Set the location of the labels.
-		localLabel.setLocation(thirdX, thirdY);
+        // Update the view.
+		dc.setColor( Graphics.COLOR_TRANSPARENT, Graphics.COLOR_BLACK );
+		dc.clear();
 
-        var utcLabel = View.findDrawableById("TimeLabelUTC");
-        utcLabel.setText(timeStringUTC);
-		// Set the location of the labels.
-		utcLabel.setLocation(2 * thirdX, thirdY);
-
+		// Draw the 24 hours of the sidereal clock dial.
 		drawSiderealDial(dc);
 
-        // Call the parent onUpdate function to redraw the layout
-        View.onUpdate(dc);
+		// Draw the text stuff.
+		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, doyString, mjdString);
+		
     }
 
     // Called when this View is removed from the screen. Save the
@@ -121,6 +119,10 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// We only recalculate the base MJD if the UTC fraction is less than it was previously.
 	// We set it to 2 at the start so we always recalculate the first time.
 	var priorUtc = 2.0d;
+	// We also calculate the MJD at the start of the year during the first run.
+	var yearBaseMjd = 0.0d;
+	// And when we see the year change.
+	var priorYear = 0;
 	function utcToMjd(utcTime) {
 		// Turn the UTC HMS into a fraction of a day.
 		var utc = timeToTurns(utcTime);
@@ -130,22 +132,42 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			dayChanged = true;
 		}
 		priorUtc = utc;
+		// Check if we have changed year.
+		var yearChanged = false;
+		if ((utcTime.year > priorYear) || (yearBaseMjd == 0)) {
+			yearChanged = true;
+		}
+		priorYear = utcTime.year;
 		if (dayChanged == true) {
 			// Calculate the base MJD.
-			var m = (utcTime.month - 3).toDouble();
-			var y = utcTime.year.toDouble();
-			if (utcTime.month <= 2) {
-				m = (utcTime.month + 9).toDouble();
-				y = (utcTime.year - 1).toDouble();
-			}
-			var c = (y / 100.0d).toNumber().toDouble();
-			y -= c * 100.0d;
-			var x1 = (146097.0d * c / 4.0d).toNumber().toDouble();
-			var x2 = (1461.0d * y / 4.0d).toNumber().toDouble();
-			var x3 = ((153.0d * m + 2.0d) / 5.0d).toNumber().toDouble();
-			baseMjd = (x1 + x2 + x3 + utcTime.day.toDouble() - 678882.0d);
+			baseMjd = calculateBaseMjd([ utcTime.year, utcTime.month, utcTime.day ]);
+		}
+		if (yearChanged == true) {
+			// Calculate the MJD on the first day of the year.
+			yearBaseMjd = calculateBaseMjd([ utcTime.year, 1, 1 ]);
 		}
 		return (baseMjd + utc);
+	}
+
+	function calculateBaseMjd(utcArray) {
+		var m = (utcArray[1] - 3).toDouble();
+		var y = utcArray[0].toDouble();
+		if (utcArray[1] <= 2) {
+			m = (utcArray[1] + 9).toDouble();
+			y = (utcArray[0] - 1).toDouble();
+		}
+		var c = (y / 100.0d).toNumber().toDouble();
+		y -= c * 100.0d;
+		var x1 = (146097.0d * c / 4.0d).toNumber().toDouble();
+		var x2 = (1461.0d * y / 4.0d).toNumber().toDouble();
+		var x3 = ((153.0d * m + 2.0d) / 5.0d).toNumber().toDouble();
+		var mjd = (x1 + x2 + x3 + utcArray[2].toDouble() - 678882.0d);
+		return (mjd);
+	}
+	
+	// Calculate the current day of year.
+	function calculateDayOfYear() {
+		return (baseMjd - yearBaseMjd + 1);
 	}
 
 	// Routine to get the location to calculate the LST for.
@@ -213,6 +235,50 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         	timeObj.min.format("%02d")]);
 		return (timeString);
 	}
+	
+	// Format a time object into a date string.
+	function formatDate(timeObj) {
+		var dateFormat = "$1$ $2$-$3$-$4$";
+		var dateString = Lang.format(dateFormat,
+			[ dayName(timeObj.day_of_week), timeObj.year.format("%04d"), 
+			  timeObj.month.format("%02d"), timeObj.day.format("%02d") ]);
+		return (dateString);
+	}
+	
+	// Format a time into a DOY string.
+	function formatDOY() {
+		var doyFormat = "$1$ ";
+		var doyString = Lang.format(doyFormat, [ calculateDayOfYear().format("%03d") ] );
+		return (doyString);
+	}
+	
+	// Format the MJD into a string.
+	function formatMJD() {
+		var mjdFormat = "$1$";
+		var mjdString = Lang.format(mjdFormat, [ baseMjd.format("%5d") ] );
+		return (mjdString);
+	}
+	
+	// Return the name of the day.
+	function dayName(dayNumber) {
+		switch (dayNumber) {
+		case Gregorian.DAY_SUNDAY:
+			return "Sun";
+		case Gregorian.DAY_MONDAY:
+			return "Mon";
+		case Gregorian.DAY_TUESDAY:
+			return "Tue";
+		case Gregorian.DAY_WEDNESDAY:
+			return "Wed";
+		case Gregorian.DAY_THURSDAY:
+			return "Thu";
+		case Gregorian.DAY_FRIDAY:
+			return "Fri";
+		case Gregorian.DAY_SATURDAY:
+			return "Sat";	
+		}
+		return "Wat";
+	}
 
 	// Work out a line segment that emits radially from the centre to the edge.
     function calcLineFromCircleEdge(arcRadius, lineLength, radian) {
@@ -234,13 +300,84 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		for (var i = 1; i < 24; i++) {
 			var dayFrac = i.toDouble() / 24.0d;
 			var radian = ZERO_RADIANS + dayFrac * Math.PI * 2.0d;
-			System.println("Radian:" + radian);
 			points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 4.0, radian);
-			System.println("Points [ " + points[0] + " , " + points[1] + " , " + points[2] + " , " + points[3] + " ]");
 			dc.drawLine(points[0], points[1], points[2], points[3]);
 		}
 		dc.setPenWidth(1);
 
+	}
+
+	// Draw all the text elements on the face.
+	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, mjdString) {
+		// The colour of the local time.
+		var localColour = Graphics.COLOR_YELLOW;
+		// Draw the local text string.		
+		var localText = new WatchUi.Text({
+			:text=>localTimeString, :color=>localColour,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_NUMBER_MILD, :locX=>thirdX, :locY=>thirdY });
+		localText.draw(dc);
+		// Make the "LOC" label.
+		var localLabel = new WatchUi.Text({
+			:text=>"LOC", :color=>localColour,
+			:justification=>Graphics.TEXT_JUSTIFY_RIGHT,
+			:font=>Graphics.FONT_XTINY, :locX=>(thirdX + (localText.width / 2)),
+			:locY=>(thirdY - localText.height) });
+		localLabel.draw(dc);
+		
+		// The colour of the UTC time.
+		var utcColour = Graphics.COLOR_GREEN;
+		// Draw the UTC text string.
+		var utcText = new WatchUi.Text({
+			:text=>utcTimeString, :color=>utcColour,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_NUMBER_MILD, :locX=>(2 * thirdX), :locY=>thirdY });
+		utcText.draw(dc);
+		// Make the "UTC" label.
+		var utcLabel = new WatchUi.Text({
+			:text=>"UTC", :color=>utcColour,
+			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
+			:font=>Graphics.FONT_XTINY, :locX=>((2 * thirdX) - (utcText.width / 2)),
+			:locY=>(thirdY - utcText.height) });
+		utcLabel.draw(dc);
+		
+		// Draw the local date.
+		var dateText = new WatchUi.Text({
+			:text=>dateString, :color=>localColour,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_SMALL, :locX=>middleX,
+			:locY=>(thirdX + localText.height) });
+		dateText.draw(dc);
+		
+		// Draw the DOY.
+		var doyLineY = thirdX + localText.height + (0.9 * dateText.height);
+		var doyText = new WatchUi.Text({
+			:text=>doyString, :color=>localColour,
+			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
+			:font=>Graphics.FONT_NUMBER_MILD, :locX=>(thirdX - (localText.width / 2.0)),
+			:locY=>doyLineY });
+		doyText.draw(dc);
+		// And the label.
+		var doyLabel = new WatchUi.Text({
+			:text=>"D", :color=>localColour,
+			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
+			:font=>Graphics.FONT_SYSTEM_XTINY, :locX=>(doyText.locX + (0.9 * doyText.width)),
+			:locY=>(doyLineY - (0.23 * doyText.height)) });
+		doyLabel.draw(dc); 
+		
+		// Draw the MJD.
+		var mjdText = new WatchUi.Text({
+			:text=>mjdString, :color=>utcColour,
+			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
+			:font=>Graphics.FONT_NUMBER_MILD, :locX=>middleX,
+			:locY=>doyLineY });
+		mjdText.draw(dc);
+		var mjdLabel = new WatchUi.Text({
+			:text=>"J ", :color=>utcColour,
+			:justification=>Graphics.TEXT_JUSTIFY_RIGHT,
+			:font=>Graphics.FONT_SYSTEM_XTINY, :locX=>mjdText.locX,
+			:locY=>(doyLineY + (0.2 * doyText.height)) });
+		mjdLabel.draw(dc);
 	}
 
 }
