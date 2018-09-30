@@ -83,6 +83,11 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         var doyString = formatDOY();
         var mjdString = formatMJD();
 
+		// Calculate the Sun's parameters.
+		var sunPos = calculateSunPosition(mjd);
+		// Calculate the hour angle for the Sun's rise/set time.
+		var sunHASet = haset_azel(sunPos[1], loc[1], 0.0d);
+
         // Update the view.
 		dc.setColor( Graphics.COLOR_TRANSPARENT, Graphics.COLOR_BLACK );
 		dc.clear();
@@ -205,6 +210,22 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		return (f);
 	}
 
+	// Given any number, put it between 0 and 360.
+	function degreesBounds(d) {
+		if (d > 360.0d) {
+			d -= d.toNumber().toDouble();
+		}
+		while (d < 0.0d) {
+			d += 360.0d;
+		}
+		return (d);
+	}
+
+	// Convert degrees to radians.
+	function degreesToRadians(deg) {
+		return (deg * Math.PI / 180.0d);
+	}
+	
 	// Calculate the sidereal time at Greenwich, given an MJD.
 	function gst(mjd, dUT1) {
 		if ((dUT1 > 0.5d) || (dUT1 < -0.5d)) {
@@ -231,6 +252,69 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var lst = turnFraction(gst(mjd, dUT1) + longitude);
 		
 		return lst;
+	}
+
+	// Calculate and return the Right Ascension and Declination of the Sun
+	// at the supplied MJD.
+	// The previous MJD for the Sun calculation.
+	var priorSunMjd = 0.0d;
+	// The Sun's location.
+	var solRaDec = [ 0.0d, 0.0d ];
+	function calculateSunPosition(mjd) {
+		// Check if we need to calculate the Sun's position.
+		var calcRequired = false;
+		if (mjd > (priorSunMjd + 0.5d)) {
+			// Calculate the Sun's position every half-day.
+			calcRequired = true;
+		}
+		if (calcRequired == true) {
+			priorSunMjd = mjd;
+			solRaDec = sunPosition(mjd);
+		}
+		return solRaDec;
+	}
+	
+	function sunPosition(mjd) {
+		// Get the number of days since 0 UTC Jan 1 2000.
+		var jd = mjd + 2400000.5d;
+		var n = jd - 2451545.0d;
+		// The longitude of the Sun, in degrees.
+		var L = 280.460d + 0.9856474d * n;
+		// Mean anomaly of the Sun, in degrees.
+		var g = 357.528d + 0.9856003d * n;
+		// Ensure bound limits for these numbers.
+		L = degreesBounds(L);
+		g = degreesBounds(g);
+		// Ecliptic longitude of the Sun, in degrees.
+		var lambda = L + 1.915d * Math.sin(degreesToRadians(g)) + 0.020d * Math.sin(2.0d * degreesToRadians(g));
+		// Sun distance from Earth.
+		var R = 1.00014d - 0.01671 * Math.cos(degreesToRadians(g)) - 0.00014d * Math.cos(2.0d * degreesToRadians(g));
+		// The obliquity, in degrees.
+		// We need the number of centuries since J2000.0.
+		var T = (n / (100.0d * 365.2525d));
+		var epsilon = 23.4392911d - (46.636769d / 3600.0d) * T - (0.0001831d / 3600.0d) * T * T + (0.00200340d / 3600.0d) * T * T * T;
+		// Get the right ascension.
+		var alpha = Math.atan2(Math.cos(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)), Math.cos(degreesToRadians(lambda)));
+		// And declination.
+		var delta = Math.asin(Math.sin(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)));
+		//System.println("Sun alpha = " + alpha.format("%.5f") + " delta = " + delta.format("%.5f"));
+		return ([ alpha, delta ]);
+	}
+
+	// Calculate the hour angle for a rise or set of a source with specified
+	// declination, from a position with specified latitude. The rise/set elevation
+	// must also be specified.
+	function haset_azel(dec, lat, lowElev) {
+		var cos_haset = (Math.cos(Math.PI / 2.0d - degreesToRadians(lowElev)) - Math.sin(degreesToRadians(lat)) * Math.sin(degreesToRadians(dec))) / (Math.cos(degreesToRadians(dec)) * Math.cos(degreesToRadians(lat)));
+		if (cos_haset > 1.0d) {
+			// The source never rises.
+			return 0.0d;
+		}
+		if (cos_haset < -1.0d) {
+			// The source never sets.
+			return 12.0d;
+		}
+		return (Math.acos(cos_haset) * 24.0d / (Math.PI * 2.0d));
 	}
 	
 	// Format a time object into a string for the watch face.
