@@ -18,6 +18,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	var quarterX;
 	var quarterY;
 	var arcRadius;
+	var arcExtra;
 	var sunRadius;
 	var SIDEREAL_HAND_LENGTH;
 
@@ -39,6 +40,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 		// Now the radii of the three LST range segments.
 		sunRadius = deviceSettings.screenHeight / 2.0;
+
+		arcExtra = sunRadius - (arcRadius - 1.1 * HOUR_TICK_LENGTH);
 
 		// The length of the sidereal hand.
 		SIDEREAL_HAND_LENGTH = sunRadius * 0.95;
@@ -86,6 +89,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 		// Draw the 24 hours of the sidereal clock dial.
 		drawSiderealDial(dc);
+		// And draw the LST hand.
+		drawLSTHand(dc, lst);
 
 		// Draw the text stuff.
 		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, doyString, mjdString);
@@ -292,7 +297,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 	// Draw the sidereal dial.
 	function drawSiderealDial(dc) {
-		var points = calcLineFromCircleEdge(arcRadius, 2.0 * HOUR_TICK_LENGTH, ZERO_RADIANS);
+		var points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 2.0, ZERO_RADIANS);
 		dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
 		dc.setPenWidth(7);
 		dc.drawLine(points[0], points[1], points[2], points[3]);
@@ -304,7 +309,15 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			dc.drawLine(points[0], points[1], points[2], points[3]);
 		}
 		dc.setPenWidth(1);
-
+	}
+	
+	// Draw the LST hand.
+	function drawLSTHand(dc, lst) {
+		var points = calcLineFromCircleEdge(sunRadius, arcExtra, ZERO_RADIANS + (lst * 2.0d * Math.PI));
+		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+		dc.setPenWidth(3);
+		dc.drawLine(points[0], points[1], points[2], points[3]);
+		dc.setPenWidth(1); 
 	}
 
 	// Draw all the text elements on the face.
@@ -350,7 +363,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		dateText.draw(dc);
 		
 		// Draw the DOY.
-		var doyLineY = thirdX + localText.height + (0.9 * dateText.height);
+		var doyLineY = thirdX + localText.height + (0.95 * dateText.height);
 		var doyText = new WatchUi.Text({
 			:text=>doyString, :color=>localColour,
 			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
