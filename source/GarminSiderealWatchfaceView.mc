@@ -16,6 +16,10 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	static const SOLAR_TO_SIDEREAL = 1.002737909350795d;
 	static const MJD_REFERENCE = 2400000.5d;
 	static const MOON_PHASE_PERIOD = 29.530588853d;
+	static const MOON_SIDE_LEFT = 1;
+	static const MOON_SIDE_RIGHT = 2;
+	static const MOON_ILLUMINATION_INSIDE = 3;
+	static const MOON_ILLUMINATION_OUTSIDE = 4;
 
 	var ZERO_RADIANS;
 	var middleX;
@@ -97,6 +101,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		
 		// Calculate the current moon phase and illumination.
 		var moonPhase = calculateMoonPhase(mjd);
+		System.println("moon phase day = " + (moonPhase * MOON_PHASE_PERIOD).format("%.3f"));
 		var moonIllumination = calculateMoonIllumination(moonPhase);
 		System.println("moon illumination = " + moonIllumination.format("%.3f"));
 
@@ -439,18 +444,59 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		dc.setPenWidth(1);
 	}
 	
+	// Draw one half of the Moon phase indicator.
+	function drawMoonHalf(dc, side, illumination, fraction) {
+		// The whole radius of the middle circle.
+		var innerRadius = arcRadius - 1.2 * HOUR_TICK_LENGTH;
+
+		// Set the clip.
+		if (side == MOON_SIDE_LEFT) {
+			dc.setClip((middleX - innerRadius), (middleY - innerRadius), 
+				   	   innerRadius + 1, (2 * innerRadius));
+		} else if (side == MOON_SIDE_RIGHT) {
+			dc.setClip(middleX, (middleY - innerRadius), 
+				       innerRadius, (2 * innerRadius));
+		}
+
+		// The Moon colour.
+		var moonColour = Graphics.COLOR_DK_GRAY;
+		var ellipseColour = moonColour;
+		var xRadius = innerRadius;
+		if (illumination == MOON_ILLUMINATION_INSIDE) {
+			// We only illuminate only part of the half.
+			xRadius = fraction * innerRadius;
+		} else if (illumination == MOON_ILLUMINATION_OUTSIDE) {
+			// That means we first illuminate the whole half, then deilluminate the middle bit.
+			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
+			dc.fillCircle(middleX, middleY, innerRadius);
+			ellipseColour = Graphics.COLOR_BLACK;
+			// The illumination is low, so the radius is from what's left.
+			xRadius = (1.0d - fraction) * innerRadius;
+		}
+		System.println("xRadius = " + xRadius.format("%.3f"));
+		if (xRadius > 0) {
+			dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
+			dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
+		}
+			
+		// Reset the clip.
+		dc.clearClip();
+	}
+	
 	// Draw the moon phase indicator.
 	function drawMoonIllumination(dc, moonIllumination) {
 		// We draw the background behind the centre part of the dial.
-		// The whole radius of the middle circle.
-		var innerRadius = arcRadius - 1.2 * HOUR_TICK_LENGTH;
 		// We split it into two halves. The two halves can have different illuminations.
 		var rightHalf = 0.0d;
 		var leftHalf = 0.0d;
 		var waxing = false;
+		var leftMode = -1;
+		var rightMode = -1;
 		if (moonIllumination < 0) {
 			// Waxing.
 			waxing = true;
+			rightMode = MOON_ILLUMINATION_OUTSIDE;
+			leftMode = MOON_ILLUMINATION_INSIDE;
 			if (moonIllumination.abs() < 0.5) {
 				rightHalf = moonIllumination.abs();
 			} else {
@@ -459,6 +505,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			}
 		} else {
 			// Waning.
+			rightMode = MOON_ILLUMINATION_INSIDE;
+			leftMode = MOON_ILLUMINATION_OUTSIDE;
 			if (moonIllumination < 0.5) {
 				leftHalf = moonIllumination;
 			} else {
@@ -472,84 +520,10 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			System.println("the moon is waning");
 		}
 		System.println("left / right illumination = " + leftHalf.format("%.3f") + " / " + rightHalf.format("%.3f"));
-		
-		// Work out the full half circle area.
-		var halfArea = 0.5d * Math.PI * innerRadius * innerRadius;
-		
-		// Start with the left half.
-		if (leftHalf > 0) {
-			// Clip the region.
-			dc.setClip((middleX - innerRadius), (middleY - innerRadius), 
-					   innerRadius + 1, (2 * innerRadius));
 
-			// If we're waxing, the illumination grows from the right.
-			var ellipseColour = Graphics.COLOR_DK_GRAY;
-			var xRadius = innerRadius;
-			if (waxing == true) {
-				// We only illuminate only part of the half.
-				var illumArea = leftHalf * halfArea;
-				if (illumArea > 0) {
-					xRadius = 2.0 * illumArea / (Math.PI * innerRadius);
-				}
-			} else {
-				// That means we illuminate the whole half, then deilluminate the middle bit.
-				dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-				dc.fillCircle(middleX, middleY, innerRadius);
-				ellipseColour = Graphics.COLOR_BLACK;
-				// The illumination is low, so the radius is from what's left.
-				var deillumArea = (0.5 - leftHalf) * halfArea;
-				if (deillumArea > 0) {
-					xRadius = 2.0 * deillumArea / (Math.PI * innerRadius);
-				} else {
-					xRadius = 0;
-				}
-			}
-			System.println("left xRadius = " + xRadius.format("%.3f"));
-			if (xRadius > 0) {
-				dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
-				dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
-			}
-			
-			// Reset the clip.
-			dc.clearClip();
-		}
-		
-		if (rightHalf > 0) {
-			// Clip the region.
-			dc.setClip(middleX, (middleY - innerRadius), 
-				       innerRadius, (2 * innerRadius));
-
-			// If we're waxing, the illumination grows from the right.
-			var ellipseColour = Graphics.COLOR_DK_GRAY;
-			var xRadius = innerRadius;
-			if (waxing == true) {
-				// That means we illuminate the whole half, then deilluminate the middle bit.
-				dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
-				dc.fillCircle(middleX, middleY, innerRadius);
-				ellipseColour = Graphics.COLOR_BLACK;
-				// The illumination is low, so the radius is from what's left.
-				var deillumArea = (0.5 - rightHalf) * halfArea;
-				if (deillumArea > 0) {
-					xRadius = 2.0 * deillumArea / (Math.PI * innerRadius);
-				} else {
-					xRadius = 0;
-				}
-			} else {
-				// We illuminate only part of the half.
-				var illumArea = rightHalf * halfArea;
-				if (illumArea > 0) {
-					xRadius = 2.0 * illumArea / (Math.PI * innerRadius);
-				}
-			}
-			System.println("right xRadius = " + xRadius.format("%.3f"));
-			if (xRadius > 0) {
-				dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
-				dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
-			}
-			
-			// Reset the clip.
-			dc.clearClip();
-		}
+		// Use our drawing routine now.
+		drawMoonHalf(dc, MOON_SIDE_LEFT, leftMode, leftHalf);
+		drawMoonHalf(dc, MOON_SIDE_RIGHT, rightMode, rightHalf);
 	}
 	
 	// Draw a source visibility segment.
