@@ -10,6 +10,13 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 	// Some parameters to control how the watch face looks.
     static const HOUR_TICK_LENGTH = 10;
+    static const NEW_MOON_JD = 2451550.1d;
+	static const JULIAN_DAY_J2000 = 2451545.0d;
+	static const JULIAN_DAYS_IN_CENTURY = 36525.0d;
+	static const SOLAR_TO_SIDEREAL = 1.002737909350795d;
+	static const MJD_REFERENCE = 2400000.5d;
+	static const MOON_PHASE_PERIOD = 29.530588853d;
+
 	var ZERO_RADIANS;
 	var middleX;
 	var middleY;
@@ -87,13 +94,22 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var sunPos = calculateSunPosition(mjd);
 		// Calculate the hour angle for the Sun's rise/set time.
 		var sunHASet = haset_azel(sunPos[1], loc[1], 0.0d);
+		
+		// Calculate the current moon phase and illumination.
+		var moonPhase = calculateMoonPhase(mjd);
+		var moonIllumination = calculateMoonIllumination(moonPhase);
+		System.println("moon illumination = " + moonIllumination.format("%.3f"));
 
         // Update the view.
 		dc.setColor( Graphics.COLOR_TRANSPARENT, Graphics.COLOR_BLACK );
 		dc.clear();
+		
+		drawMoonIllumination(dc, moonIllumination);
 
 		// Draw the 24 hours of the sidereal clock dial.
 		drawSiderealDial(dc);
+		// Draw the source arcs.
+		drawVisibilitySegment(dc, sunPos[0], sunHASet, 0);
 		// And draw the LST hand.
 		drawLSTHand(dc, lst);
 
@@ -197,33 +213,42 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     		}				
 		}
 		return loc;
-	}	
+	}
+	
+	// Given any number n, put it between 0 and some other number b.
+	function numberBounds(n, b) {
+		if (n > b) {
+			n -= n.toNumber().toDouble();
+		}
+		while (n < 0.0d) {
+			n += b;
+		}
+		return (n);
+	}
 
 	// Given any number, put it between 0 and 1.
 	function turnFraction(f) {
-		if (f > 1.0d) {
-			f -= f.toNumber().toDouble();
-		}
-		while (f < 0.0d) {
-			f += 1.0d;
-		}
-		return (f);
+		return numberBounds(f, 1.0d);
 	}
 
 	// Given any number, put it between 0 and 360.
 	function degreesBounds(d) {
-		if (d > 360.0d) {
-			d -= d.toNumber().toDouble();
-		}
-		while (d < 0.0d) {
-			d += 360.0d;
-		}
-		return (d);
+		return numberBounds(d, 360.0d);
+	}
+	
+	// Given any number, put it between 0 and 2 PI.
+	function radiansBounds(r) {
+		return numberBounds(r, (Math.PI * 2.0d));
 	}
 
 	// Convert degrees to radians.
 	function degreesToRadians(deg) {
 		return (deg * Math.PI / 180.0d);
+	}
+	
+	// Convert radians to degrees.
+	function radiansToDegrees(rad) {
+		return (rad * 180.0d / Math.PI);
 	}
 	
 	// Calculate the sidereal time at Greenwich, given an MJD.
@@ -232,15 +257,12 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			System.println("dUT1 is out of range at " + dUT1.format("%.4f"));
 			return 0.0d;
 		}
-		var JULIAN_DAY_J2000 = 2451545.0d;
-		var JULIAN_DAYS_IN_CENTURY = 36525.0d;
-		var SOLAR_TO_SIDEREAL = 1.002737909350795d;
 		
 		var a = 101.0d + 24110.54581d / 86400.0d;
 		var b = 8640184.812866d / 86400.0d;
 		var e = 0.093104d / 86400.0d;
 		var d = 0.0000062d / 86400.0d;
-		var tu = (mjd.toNumber().toDouble() - (JULIAN_DAY_J2000 - 2400000.5d)) / JULIAN_DAYS_IN_CENTURY;
+		var tu = (mjd.toNumber().toDouble() - (JULIAN_DAY_J2000 - MJD_REFERENCE)) / JULIAN_DAYS_IN_CENTURY;
 		var sidtim = turnFraction(a + tu * (b + tu * (e - tu * d)));
 		var gmst = turnFraction(sidtim + (mjd - mjd.toNumber().toDouble() + dUT1 / 86400.0d) * SOLAR_TO_SIDEREAL);
 		
@@ -276,8 +298,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	
 	function sunPosition(mjd) {
 		// Get the number of days since 0 UTC Jan 1 2000.
-		var jd = mjd + 2400000.5d;
-		var n = jd - 2451545.0d;
+		var jd = mjd + MJD_REFERENCE;
+		var n = jd - JULIAN_DAY_J2000;
 		// The longitude of the Sun, in degrees.
 		var L = 280.460d + 0.9856474d * n;
 		// Mean anomaly of the Sun, in degrees.
@@ -293,12 +315,32 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// We need the number of centuries since J2000.0.
 		var T = (n / (100.0d * 365.2525d));
 		var epsilon = 23.4392911d - (46.636769d / 3600.0d) * T - (0.0001831d / 3600.0d) * T * T + (0.00200340d / 3600.0d) * T * T * T;
-		// Get the right ascension.
-		var alpha = Math.atan2(Math.cos(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)), Math.cos(degreesToRadians(lambda)));
-		// And declination.
+		// Get the right ascension, in radians. We have to shift it by Pi because the
+		// atan2 range is -Pi -> Pi.
+		var alpha = Math.PI + Math.atan2(Math.cos(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)), Math.cos(degreesToRadians(lambda)));
+		// And declination, in radians.
 		var delta = Math.asin(Math.sin(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)));
 		//System.println("Sun alpha = " + alpha.format("%.5f") + " delta = " + delta.format("%.5f"));
 		return ([ alpha, delta ]);
+	}
+	
+	// Calculate the Moon phase.
+	function calculateMoonPhase(mjd) {
+		// Get the number of days since the new moon reference.
+		var n = mjd + MJD_REFERENCE - NEW_MOON_JD;
+		// How many new moons is that?
+		var numNewMoons = n / MOON_PHASE_PERIOD;
+		// We only care about the fractional bit.
+		var moonPhase = turnFraction(numNewMoons);
+		
+		return (moonPhase);
+	}
+	
+	// Calculate the Moon illumination.
+	function calculateMoonIllumination(moonPhase) {
+		// If the phase is below 0.5 it's waxing, waning above it.
+		var illum = 1.0d - (moonPhase * 2.0d - 1.0d).abs();
+		return (illum * ((moonPhase < 0.5) ? -1.0d : 1.0d));
 	}
 
 	// Calculate the hour angle for a rise or set of a source with specified
@@ -312,9 +354,11 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		}
 		if (cos_haset < -1.0d) {
 			// The source never sets.
-			return 12.0d;
+			return (Math.PI * 2.0d);
 		}
-		return (Math.acos(cos_haset) * 24.0d / (Math.PI * 2.0d));
+		// Return the HA, in radians.
+		//return (Math.acos(cos_haset) * 24.0d / (Math.PI * 2.0d));
+		return (Math.acos(cos_haset));
 	}
 	
 	// Format a time object into a string for the watch face.
@@ -393,6 +437,154 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			dc.drawLine(points[0], points[1], points[2], points[3]);
 		}
 		dc.setPenWidth(1);
+	}
+	
+	// Draw the moon phase indicator.
+	function drawMoonIllumination(dc, moonIllumination) {
+		// We draw the background behind the centre part of the dial.
+		// The whole radius of the middle circle.
+		var innerRadius = arcRadius - 1.2 * HOUR_TICK_LENGTH;
+		// We split it into two halves. The two halves can have different illuminations.
+		var rightHalf = 0.0d;
+		var leftHalf = 0.0d;
+		var waxing = false;
+		if (moonIllumination < 0) {
+			// Waxing.
+			waxing = true;
+			if (moonIllumination.abs() < 0.5) {
+				rightHalf = moonIllumination.abs();
+			} else {
+				rightHalf = 1.0d;
+				leftHalf = moonIllumination.abs() - 0.5d;
+			}
+		} else {
+			// Waning.
+			if (moonIllumination < 0.5) {
+				leftHalf = moonIllumination;
+			} else {
+				leftHalf = 1.0d;
+				rightHalf = moonIllumination - 0.5d;
+			}
+		}
+		if (waxing == true) {
+			System.println("the moon is waxing");
+		} else {
+			System.println("the moon is waning");
+		}
+		System.println("left / right illumination = " + leftHalf.format("%.3f") + " / " + rightHalf.format("%.3f"));
+		
+		// Work out the full half circle area.
+		var halfArea = 0.5d * Math.PI * innerRadius * innerRadius;
+		
+		// Start with the left half.
+		if (leftHalf > 0) {
+			// Clip the region.
+			dc.setClip((middleX - innerRadius), (middleY - innerRadius), 
+					   innerRadius + 1, (2 * innerRadius));
+
+			// If we're waxing, the illumination grows from the right.
+			var ellipseColour = Graphics.COLOR_DK_GRAY;
+			var xRadius = innerRadius;
+			if (waxing == true) {
+				// We only illuminate only part of the half.
+				var illumArea = leftHalf * halfArea;
+				if (illumArea > 0) {
+					xRadius = 2.0 * illumArea / (Math.PI * innerRadius);
+				}
+			} else {
+				// That means we illuminate the whole half, then deilluminate the middle bit.
+				dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+				dc.fillCircle(middleX, middleY, innerRadius);
+				ellipseColour = Graphics.COLOR_BLACK;
+				// The illumination is low, so the radius is from what's left.
+				var deillumArea = (0.5 - leftHalf) * halfArea;
+				if (deillumArea > 0) {
+					xRadius = 2.0 * deillumArea / (Math.PI * innerRadius);
+				} else {
+					xRadius = 0;
+				}
+			}
+			System.println("left xRadius = " + xRadius.format("%.3f"));
+			if (xRadius > 0) {
+				dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
+				dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
+			}
+			
+			// Reset the clip.
+			dc.clearClip();
+		}
+		
+		if (rightHalf > 0) {
+			// Clip the region.
+			dc.setClip(middleX, (middleY - innerRadius), 
+				       innerRadius, (2 * innerRadius));
+
+			// If we're waxing, the illumination grows from the right.
+			var ellipseColour = Graphics.COLOR_DK_GRAY;
+			var xRadius = innerRadius;
+			if (waxing == true) {
+				// That means we illuminate the whole half, then deilluminate the middle bit.
+				dc.setColor(Graphics.COLOR_DK_GRAY, Graphics.COLOR_TRANSPARENT);
+				dc.fillCircle(middleX, middleY, innerRadius);
+				ellipseColour = Graphics.COLOR_BLACK;
+				// The illumination is low, so the radius is from what's left.
+				var deillumArea = (0.5 - rightHalf) * halfArea;
+				if (deillumArea > 0) {
+					xRadius = 2.0 * deillumArea / (Math.PI * innerRadius);
+				} else {
+					xRadius = 0;
+				}
+			} else {
+				// We illuminate only part of the half.
+				var illumArea = rightHalf * halfArea;
+				if (illumArea > 0) {
+					xRadius = 2.0 * illumArea / (Math.PI * innerRadius);
+				}
+			}
+			System.println("right xRadius = " + xRadius.format("%.3f"));
+			if (xRadius > 0) {
+				dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
+				dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
+			}
+			
+			// Reset the clip.
+			dc.clearClip();
+		}
+	}
+	
+	// Draw a source visibility segment.
+	function drawVisibilitySegment(dc, rightAscension, haRange, sourceNumber) {
+		// Calculate the source rise and set radians.
+		var sourceRiseDegrees = degreesBounds(radiansToDegrees(rightAscension - haRange - ZERO_RADIANS));
+		var sourceSetDegrees = degreesBounds(radiansToDegrees(rightAscension + haRange - ZERO_RADIANS));
+		
+		// Set the colour based on the source number.
+		var arcColour = Graphics.COLOR_YELLOW;
+		switch (sourceNumber) {
+		case 1:
+			arcColour = Graphics.COLOR_PINK;
+			break;
+		case 2:
+			arcColour = Graphics.COLOR_LT_GRAY;
+			break;
+		}
+		dc.setColor(arcColour, Graphics.COLOR_TRANSPARENT);
+		dc.setPenWidth(10);
+		
+		// Set the radius of the arc based on the source number.
+		var arcRadius = sunRadius;
+		switch (sourceNumber) {
+		case 1:
+			arcRadius = sunRadius - (arcExtra / 3.0d);
+			break;
+		case 2:
+			arcRadius = sunRadius - (2.0d * arcExtra / 3.0d);
+			break;
+		}
+
+		// Draw the arc now.
+		dc.drawArc(middleX, middleY, arcRadius, Graphics.ARC_COUNTER_CLOCKWISE, sourceRiseDegrees, sourceSetDegrees);
+		
 	}
 	
 	// Draw the LST hand.
