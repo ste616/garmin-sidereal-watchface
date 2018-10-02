@@ -50,7 +50,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		arcRadius = deviceSettings.screenHeight / 2.3;
 
 		// Now the radii of the three LST range segments.
-		sunRadius = deviceSettings.screenHeight / 2.0;
+		sunRadius = (deviceSettings.screenHeight / 2.0) - 3;
 
 		arcExtra = sunRadius - (arcRadius - 1.1 * HOUR_TICK_LENGTH);
 
@@ -97,7 +97,17 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Calculate the Sun's parameters.
 		var sunPos = calculateSunPosition(mjd);
 		// Calculate the hour angle for the Sun's rise/set time.
-		var sunHASet = haset_azel(sunPos[1], loc[1], 0.0d);
+		var sunHASet = haset_azel(sunPos[1], loc[0], 0.0d);
+		
+		// The other two sources.
+		var dialSources = [ [ rightAscensionRadians([ 19, 39, 25.026 ]), declinationRadians([ -1, 63, 42, 45.63 ]) ],
+							[ rightAscensionRadians([ 8, 25, 26.869 ]), declinationRadians([ -1, 50, 10, 38.49 ]) ] ];
+		// Calculate the HA sets for these sources.
+		var dialHASets = [];
+		var i;
+		for (i = 0; i < dialSources.size(); i++) {
+			dialHASets.add(haset_azel(dialSources[i][1], loc[0], 12.0d));
+		}
 		
 		// Calculate the current moon phase and illumination.
 		var moonPhase = calculateMoonPhase(mjd);
@@ -115,6 +125,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		drawSiderealDial(dc);
 		// Draw the source arcs.
 		drawVisibilitySegment(dc, sunPos[0], sunHASet, 0);
+		for (i = 0; i < dialSources.size(); i++) {
+			drawVisibilitySegment(dc, dialSources[i][0], dialHASets[i], (i + 1));
+		}
 		// And draw the LST hand.
 		drawLSTHand(dc, lst);
 
@@ -248,12 +261,25 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 	// Convert degrees to radians.
 	function degreesToRadians(deg) {
-		return (deg * Math.PI / 180.0d);
+		return (deg.toDouble() * Math.PI / 180.0d);
 	}
 	
 	// Convert radians to degrees.
 	function radiansToDegrees(rad) {
-		return (rad * 180.0d / Math.PI);
+		return (rad.toDouble() * 180.0d / Math.PI);
+	}
+	
+	// Convert an RA [ h, m, s ] to a radian decimal.
+	function rightAscensionRadians(ra) {
+		var raDecimal = 15.0 * (ra[0].toDouble() + ra[1].toDouble() / 60.0d + ra[2].toDouble() / 3600.0d);
+		return degreesToRadians(raDecimal);
+	}
+	
+	// Convert a Declination [ sign, d, m, s ] to a radian decimal.
+	function declinationRadians(dec) {
+		var decDecimal = dec[0].toDouble() * (dec[1].toDouble() + dec[2].toDouble() / 60.0d + 
+											  dec[3].toDouble() / 3600.0d);
+		return degreesToRadians(decDecimal);
 	}
 	
 	// Calculate the sidereal time at Greenwich, given an MJD.
@@ -322,7 +348,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var epsilon = 23.4392911d - (46.636769d / 3600.0d) * T - (0.0001831d / 3600.0d) * T * T + (0.00200340d / 3600.0d) * T * T * T;
 		// Get the right ascension, in radians. We have to shift it by Pi because the
 		// atan2 range is -Pi -> Pi.
-		var alpha = Math.PI + Math.atan2(Math.cos(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)), Math.cos(degreesToRadians(lambda)));
+		var alpha = Math.atan2(Math.cos(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)), Math.cos(degreesToRadians(lambda)));
 		// And declination, in radians.
 		var delta = Math.asin(Math.sin(degreesToRadians(epsilon)) * Math.sin(degreesToRadians(lambda)));
 		//System.println("Sun alpha = " + alpha.format("%.5f") + " delta = " + delta.format("%.5f"));
@@ -352,14 +378,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// declination, from a position with specified latitude. The rise/set elevation
 	// must also be specified.
 	function haset_azel(dec, lat, lowElev) {
-		var cos_haset = (Math.cos(Math.PI / 2.0d - degreesToRadians(lowElev)) - Math.sin(degreesToRadians(lat)) * Math.sin(degreesToRadians(dec))) / (Math.cos(degreesToRadians(dec)) * Math.cos(degreesToRadians(lat)));
+		var cos_haset = (Math.cos(Math.PI / 2.0d - degreesToRadians(lowElev)) - Math.sin(degreesToRadians(lat)) * Math.sin(dec)) / (Math.cos(dec) * Math.cos(degreesToRadians(lat)));
 		if (cos_haset > 1.0d) {
 			// The source never rises.
 			return 0.0d;
 		}
 		if (cos_haset < -1.0d) {
 			// The source never sets.
-			return (Math.PI * 2.0d);
+			return (Math.PI);
 		}
 		// Return the HA, in radians.
 		//return (Math.acos(cos_haset) * 24.0d / (Math.PI * 2.0d));
@@ -529,15 +555,18 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// Draw a source visibility segment.
 	function drawVisibilitySegment(dc, rightAscension, haRange, sourceNumber) {
 		// Calculate the source rise and set radians.
-		var sourceRiseDegrees = 360.0d - degreesBounds(radiansToDegrees(rightAscension - haRange - ZERO_RADIANS));
-		var sourceSetDegrees = 360.0d - degreesBounds(radiansToDegrees(rightAscension + haRange - ZERO_RADIANS));
+		System.println("drawing source " + sourceNumber.format("%1d"));
+		System.println("right ascension = " + rightAscension.format("%.6f"));
+		System.println("ha range = " + haRange.format("%.6f"));
+		var sourceRiseDegrees = degreesBounds(360.0 - radiansToDegrees(rightAscension - haRange) + 90.0);
+		var sourceSetDegrees = degreesBounds(360.0 - radiansToDegrees(rightAscension + haRange) + 90.0);
 		System.println("source rise,set = " + sourceRiseDegrees.format("%.3f") + "," + sourceSetDegrees.format("%.3f"));
 		
 		// Set the colour based on the source number.
 		var arcColour = Graphics.COLOR_YELLOW;
 		switch (sourceNumber) {
 		case 1:
-			arcColour = Graphics.COLOR_PINK;
+			arcColour = Graphics.COLOR_DK_GREEN;
 			break;
 		case 2:
 			arcColour = Graphics.COLOR_LT_GRAY;
