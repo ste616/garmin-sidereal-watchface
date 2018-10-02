@@ -105,218 +105,219 @@
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="224" pc="268437569" symbol="numberBounds"/>
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="225" pc="268437573" symbol="numberBounds"/>
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="226" pc="268437581" symbol="numberBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="228" pc="268437609" symbol="numberBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="229" pc="268437624" symbol="numberBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="231" pc="268437634" symbol="numberBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="26" lineNum="235" pc="268437638" symbol="turnFraction"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="26" lineNum="236" pc="268437642" symbol="turnFraction"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="27" lineNum="240" pc="268437666" symbol="degreesBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="27" lineNum="241" pc="268437670" symbol="degreesBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="28" lineNum="245" pc="268437694" symbol="radiansBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="28" lineNum="246" pc="268437698" symbol="radiansBounds"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="29" lineNum="250" pc="268437737" symbol="degreesToRadians"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="29" lineNum="251" pc="268437741" symbol="degreesToRadians"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="30" lineNum="255" pc="268437770" symbol="radiansToDegrees"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="30" lineNum="256" pc="268437774" symbol="radiansToDegrees"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="260" pc="268437803" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="261" pc="268437807" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="262" pc="268437840" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="263" pc="268437878" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="266" pc="268437891" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="267" pc="268437902" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="268" pc="268437913" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="269" pc="268437924" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="270" pc="268437935" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="271" pc="268437984" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="272" pc="268438017" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="274" pc="268438078" symbol="gst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="278" pc="268438082" symbol="mjdToLst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="279" pc="268438086" symbol="mjdToLst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="281" pc="268438117" symbol="mjdToLst"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="290" pc="268438121" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="292" pc="268438125" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="293" pc="268438129" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="295" pc="268438153" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="297" pc="268438160" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="298" pc="268438168" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="299" pc="268438178" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="301" pc="268438202" symbol="calculateSunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="304" pc="268438212" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="306" pc="268438216" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="307" pc="268438229" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="309" pc="268438242" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="311" pc="268438266" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="313" pc="268438290" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="314" pc="268438305" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="316" pc="268438320" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="318" pc="268438416" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="321" pc="268438515" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="322" pc="268438529" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="325" pc="268438588" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="327" pc="268438713" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="329" pc="268438793" symbol="sunPosition"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="333" pc="268438821" symbol="calculateMoonPhase"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="335" pc="268438825" symbol="calculateMoonPhase"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="337" pc="268438847" symbol="calculateMoonPhase"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="339" pc="268438860" symbol="calculateMoonPhase"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="341" pc="268438875" symbol="calculateMoonPhase"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="345" pc="268438879" symbol="calculateMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="347" pc="268438883" symbol="calculateMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="348" pc="268438926" symbol="calculateMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="354" pc="268438963" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="355" pc="268438967" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="356" pc="268439148" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="358" pc="268439163" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="360" pc="268439176" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="362" pc="268439191" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="366" pc="268439219" symbol="haset_azel"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="370" pc="268439240" symbol="formatTime"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="371" pc="268439244" symbol="formatTime"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="372" pc="268439251" symbol="formatTime"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="374" pc="268439336" symbol="formatTime"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="378" pc="268439340" symbol="formatDate"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="379" pc="268439344" symbol="formatDate"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="380" pc="268439351" symbol="formatDate"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="383" pc="268439493" symbol="formatDate"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="387" pc="268439497" symbol="formatDOY"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="388" pc="268439501" symbol="formatDOY"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="389" pc="268439508" symbol="formatDOY"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="390" pc="268439566" symbol="formatDOY"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="394" pc="268439570" symbol="formatMJD"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="395" pc="268439574" symbol="formatMJD"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="396" pc="268439581" symbol="formatMJD"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="397" pc="268439636" symbol="formatMJD"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="401" pc="268439640" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="402" pc="268439644" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="404" pc="268439841" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="406" pc="268439847" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="408" pc="268439853" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="410" pc="268439859" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="412" pc="268439865" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="414" pc="268439871" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="416" pc="268439877" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="418" pc="268439883" symbol="dayName"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="422" pc="268439890" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="423" pc="268439894" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="424" pc="268439939" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="425" pc="268439981" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="426" pc="268440026" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="427" pc="268440068" symbol="calcLineFromCircleEdge"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="432" pc="268440116" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="433" pc="268440120" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="434" pc="268440178" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="435" pc="268440214" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="436" pc="268440231" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="437" pc="268440275" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="438" pc="268440292" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="439" pc="268440310" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="440" pc="268440333" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="441" pc="268440371" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="442" pc="268440423" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="444" pc="268440480" symbol="drawSiderealDial"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="448" pc="268440498" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="450" pc="268440502" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="453" pc="268440527" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="454" pc="268440541" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="456" pc="268440594" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="457" pc="268440608" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="462" pc="268440652" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="463" pc="268440666" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="464" pc="268440670" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="465" pc="268440674" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="467" pc="268440688" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="468" pc="268440698" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="470" pc="268440712" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="471" pc="268440738" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="472" pc="268440768" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="474" pc="268440782" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="476" pc="268440802" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="477" pc="268440840" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="478" pc="268440851" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="479" pc="268440877" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="483" pc="268440912" symbol="drawMoonHalf"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="487" pc="268440925" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="490" pc="268440929" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="491" pc="268440940" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="492" pc="268440951" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="493" pc="268440955" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="494" pc="268440962" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="495" pc="268440969" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="497" pc="268440980" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="498" pc="268440984" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="499" pc="268440994" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="500" pc="268441004" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="501" pc="268441024" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="503" pc="268441040" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="504" pc="268441051" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="508" pc="268441077" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="509" pc="268441087" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="510" pc="268441097" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="511" pc="268441108" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="513" pc="268441115" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="514" pc="268441126" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="517" pc="268441140" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="518" pc="268441148" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="520" pc="268441172" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="522" pc="268441193" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="525" pc="268441254" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="526" pc="268441280" symbol="drawMoonIllumination"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="530" pc="268441307" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="532" pc="268441311" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="533" pc="268441349" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="536" pc="268441387" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="537" pc="268441401" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="539" pc="268441454" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="540" pc="268441468" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="542" pc="268441471" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="543" pc="268441485" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="545" pc="268441488" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="546" pc="268441514" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="549" pc="268441531" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="550" pc="268441541" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="552" pc="268441594" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="553" pc="268441623" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="555" pc="268441626" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="556" pc="268441665" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="560" pc="268441668" symbol="drawVisibilitySegment"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="565" pc="268441715" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="566" pc="268441719" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="567" pc="268441784" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="568" pc="268441820" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="569" pc="268441837" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="570" pc="268441881" symbol="drawLSTHand"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="574" pc="268441899" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="576" pc="268441903" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="578" pc="268441917" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="582" pc="268442043" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="584" pc="268442057" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="589" pc="268442210" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="592" pc="268442224" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="594" pc="268442238" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="598" pc="268442370" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="600" pc="268442384" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="605" pc="268442543" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="608" pc="268442557" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="613" pc="268442692" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="616" pc="268442706" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="617" pc="268442740" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="622" pc="268442875" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="624" pc="268442889" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="629" pc="268443042" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="632" pc="268443056" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="637" pc="268443176" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="638" pc="268443190" symbol="drawFaceText"/>
-<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="643" pc="268443328" symbol="drawFaceText"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="29" pc="268443343" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="33" pc="268443355" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="34" pc="268443379" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="35" pc="268443550" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="36" pc="268443583" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="37" pc="268443635" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="38" pc="268443806" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="39" pc="268443839" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="40" pc="268443891" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="56" lineNum="43" pc="268443937" symbol="WatchFace"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="228" pc="268437591" symbol="numberBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="229" pc="268437606" symbol="numberBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="25" lineNum="231" pc="268437616" symbol="numberBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="26" lineNum="235" pc="268437620" symbol="turnFraction"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="26" lineNum="236" pc="268437624" symbol="turnFraction"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="27" lineNum="240" pc="268437648" symbol="degreesBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="27" lineNum="241" pc="268437652" symbol="degreesBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="28" lineNum="245" pc="268437676" symbol="radiansBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="28" lineNum="246" pc="268437680" symbol="radiansBounds"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="29" lineNum="250" pc="268437719" symbol="degreesToRadians"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="29" lineNum="251" pc="268437723" symbol="degreesToRadians"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="30" lineNum="255" pc="268437752" symbol="radiansToDegrees"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="30" lineNum="256" pc="268437756" symbol="radiansToDegrees"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="260" pc="268437785" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="261" pc="268437789" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="262" pc="268437822" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="263" pc="268437860" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="266" pc="268437873" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="267" pc="268437884" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="268" pc="268437895" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="269" pc="268437906" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="270" pc="268437917" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="271" pc="268437966" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="272" pc="268437999" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="31" lineNum="274" pc="268438060" symbol="gst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="278" pc="268438064" symbol="mjdToLst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="279" pc="268438068" symbol="mjdToLst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="32" lineNum="281" pc="268438099" symbol="mjdToLst"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="290" pc="268438103" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="292" pc="268438107" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="293" pc="268438111" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="295" pc="268438135" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="297" pc="268438142" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="298" pc="268438150" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="299" pc="268438160" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="33" lineNum="301" pc="268438184" symbol="calculateSunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="304" pc="268438194" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="306" pc="268438198" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="307" pc="268438211" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="309" pc="268438224" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="311" pc="268438248" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="313" pc="268438272" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="314" pc="268438287" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="316" pc="268438302" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="318" pc="268438398" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="321" pc="268438497" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="322" pc="268438511" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="325" pc="268438570" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="327" pc="268438695" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="34" lineNum="329" pc="268438775" symbol="sunPosition"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="333" pc="268438803" symbol="calculateMoonPhase"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="335" pc="268438807" symbol="calculateMoonPhase"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="337" pc="268438829" symbol="calculateMoonPhase"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="339" pc="268438842" symbol="calculateMoonPhase"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="35" lineNum="341" pc="268438857" symbol="calculateMoonPhase"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="345" pc="268438861" symbol="calculateMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="347" pc="268438865" symbol="calculateMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="36" lineNum="348" pc="268438908" symbol="calculateMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="354" pc="268438945" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="355" pc="268438949" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="356" pc="268439130" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="358" pc="268439145" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="360" pc="268439158" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="362" pc="268439173" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="37" lineNum="366" pc="268439201" symbol="haset_azel"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="370" pc="268439222" symbol="formatTime"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="371" pc="268439226" symbol="formatTime"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="372" pc="268439233" symbol="formatTime"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="38" lineNum="374" pc="268439318" symbol="formatTime"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="378" pc="268439322" symbol="formatDate"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="379" pc="268439326" symbol="formatDate"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="380" pc="268439333" symbol="formatDate"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="39" lineNum="383" pc="268439475" symbol="formatDate"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="387" pc="268439479" symbol="formatDOY"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="388" pc="268439483" symbol="formatDOY"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="389" pc="268439490" symbol="formatDOY"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="40" lineNum="390" pc="268439548" symbol="formatDOY"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="394" pc="268439552" symbol="formatMJD"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="395" pc="268439556" symbol="formatMJD"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="396" pc="268439563" symbol="formatMJD"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="41" lineNum="397" pc="268439618" symbol="formatMJD"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="401" pc="268439622" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="402" pc="268439626" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="404" pc="268439823" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="406" pc="268439829" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="408" pc="268439835" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="410" pc="268439841" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="412" pc="268439847" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="414" pc="268439853" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="416" pc="268439859" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="42" lineNum="418" pc="268439865" symbol="dayName"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="422" pc="268439872" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="423" pc="268439876" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="424" pc="268439921" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="425" pc="268439963" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="426" pc="268440008" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="43" lineNum="427" pc="268440050" symbol="calcLineFromCircleEdge"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="432" pc="268440098" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="433" pc="268440102" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="434" pc="268440160" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="435" pc="268440196" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="436" pc="268440213" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="437" pc="268440257" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="438" pc="268440274" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="439" pc="268440292" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="440" pc="268440315" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="441" pc="268440353" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="442" pc="268440405" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="44" lineNum="444" pc="268440462" symbol="drawSiderealDial"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="448" pc="268440480" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="450" pc="268440484" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="453" pc="268440509" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="454" pc="268440523" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="456" pc="268440576" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="457" pc="268440590" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="462" pc="268440634" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="463" pc="268440648" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="464" pc="268440652" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="465" pc="268440656" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="467" pc="268440670" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="468" pc="268440680" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="470" pc="268440694" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="471" pc="268440720" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="472" pc="268440750" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="474" pc="268440764" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="476" pc="268440784" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="477" pc="268440822" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="478" pc="268440833" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="479" pc="268440859" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="45" lineNum="483" pc="268440894" symbol="drawMoonHalf"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="487" pc="268440907" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="490" pc="268440911" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="491" pc="268440922" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="492" pc="268440933" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="493" pc="268440937" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="494" pc="268440944" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="495" pc="268440951" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="497" pc="268440962" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="498" pc="268440966" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="499" pc="268440976" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="500" pc="268440986" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="501" pc="268441006" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="503" pc="268441032" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="504" pc="268441043" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="508" pc="268441079" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="509" pc="268441089" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="510" pc="268441099" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="511" pc="268441110" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="513" pc="268441127" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="514" pc="268441138" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="517" pc="268441162" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="518" pc="268441170" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="520" pc="268441194" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="522" pc="268441215" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="525" pc="268441276" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="46" lineNum="526" pc="268441302" symbol="drawMoonIllumination"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="530" pc="268441329" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="532" pc="268441333" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="533" pc="268441381" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="534" pc="268441429" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="537" pc="268441490" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="538" pc="268441504" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="540" pc="268441557" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="541" pc="268441571" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="543" pc="268441574" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="544" pc="268441588" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="546" pc="268441591" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="547" pc="268441617" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="550" pc="268441634" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="551" pc="268441644" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="553" pc="268441697" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="554" pc="268441726" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="556" pc="268441729" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="557" pc="268441768" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="47" lineNum="561" pc="268441771" symbol="drawVisibilitySegment"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="566" pc="268441818" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="567" pc="268441822" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="568" pc="268441887" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="569" pc="268441923" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="570" pc="268441940" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="48" lineNum="571" pc="268441984" symbol="drawLSTHand"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="575" pc="268442002" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="577" pc="268442006" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="579" pc="268442020" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="583" pc="268442146" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="585" pc="268442160" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="590" pc="268442313" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="593" pc="268442327" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="595" pc="268442341" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="599" pc="268442473" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="601" pc="268442487" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="606" pc="268442646" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="609" pc="268442660" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="614" pc="268442795" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="617" pc="268442809" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="618" pc="268442843" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="623" pc="268442978" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="625" pc="268442992" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="630" pc="268443145" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="633" pc="268443159" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="638" pc="268443279" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="639" pc="268443293" symbol="drawFaceText"/>
+<entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="49" lineNum="644" pc="268443431" symbol="drawFaceText"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="29" pc="268443446" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="33" pc="268443458" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="34" pc="268443482" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="35" pc="268443653" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="36" pc="268443686" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="37" pc="268443738" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="38" pc="268443909" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="39" pc="268443942" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="40" pc="268443994" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="56" lineNum="43" pc="268444040" symbol="WatchFace"/>
 </pcToLineNum>
 <symbolTable>
 <entry id="33" method="true" symbol="turnFraction"/>
@@ -466,122 +467,122 @@
 <entry endPc="268437565" name="act" stackId="3" startPc="268437496"/>
 <entry endPc="268437568" name="loc" stackId="2" startPc="268437406"/>
 <entry endPc="268437569" name="locationName" stackId="1" startPc="268437402"/>
-<entry endPc="268437638" name="b" stackId="2" startPc="268437569"/>
-<entry endPc="268437638" name="n" stackId="1" startPc="268437569"/>
-<entry endPc="268437666" name="f" stackId="1" startPc="268437638"/>
-<entry endPc="268437694" name="d" stackId="1" startPc="268437666"/>
-<entry endPc="268437737" name="r" stackId="1" startPc="268437694"/>
-<entry endPc="268437770" name="deg" stackId="1" startPc="268437737"/>
-<entry endPc="268437803" name="rad" stackId="1" startPc="268437770"/>
-<entry endPc="268438081" name="b" stackId="4" startPc="268437807"/>
-<entry endPc="268438081" name="a" stackId="3" startPc="268437807"/>
-<entry endPc="268438081" name="tu" stackId="7" startPc="268437807"/>
-<entry endPc="268438081" name="gmst" stackId="9" startPc="268437807"/>
-<entry endPc="268438081" name="sidtim" stackId="8" startPc="268437807"/>
-<entry endPc="268438081" name="e" stackId="5" startPc="268437807"/>
-<entry endPc="268438081" name="d" stackId="6" startPc="268437807"/>
-<entry endPc="268438082" name="mjd" stackId="1" startPc="268437803"/>
-<entry endPc="268438082" name="dUT1" stackId="2" startPc="268437803"/>
-<entry endPc="268438120" name="lst" stackId="4" startPc="268438086"/>
-<entry endPc="268438121" name="mjd" stackId="1" startPc="268438082"/>
-<entry endPc="268438121" name="dUT1" stackId="3" startPc="268438082"/>
-<entry endPc="268438121" name="longitude" stackId="2" startPc="268438082"/>
-<entry endPc="268438211" name="calcRequired" stackId="2" startPc="268438125"/>
-<entry endPc="268438212" name="mjd" stackId="1" startPc="268438121"/>
-<entry endPc="268438820" name="n" stackId="3" startPc="268438216"/>
-<entry endPc="268438820" name="alpha" stackId="10" startPc="268438216"/>
-<entry endPc="268438820" name="T" stackId="8" startPc="268438216"/>
-<entry endPc="268438820" name="R" stackId="7" startPc="268438216"/>
-<entry endPc="268438820" name="g" stackId="5" startPc="268438216"/>
-<entry endPc="268438820" name="lambda" stackId="6" startPc="268438216"/>
-<entry endPc="268438820" name="L" stackId="4" startPc="268438216"/>
-<entry endPc="268438820" name="jd" stackId="2" startPc="268438216"/>
-<entry endPc="268438820" name="delta" stackId="11" startPc="268438216"/>
-<entry endPc="268438820" name="epsilon" stackId="9" startPc="268438216"/>
-<entry endPc="268438821" name="mjd" stackId="1" startPc="268438212"/>
-<entry endPc="268438878" name="moonPhase" stackId="4" startPc="268438825"/>
-<entry endPc="268438878" name="numNewMoons" stackId="3" startPc="268438825"/>
-<entry endPc="268438878" name="n" stackId="2" startPc="268438825"/>
-<entry endPc="268438879" name="mjd" stackId="1" startPc="268438821"/>
-<entry endPc="268438962" name="illum" stackId="2" startPc="268438883"/>
-<entry endPc="268438963" name="moonPhase" stackId="1" startPc="268438879"/>
-<entry endPc="268439239" name="cos_haset" stackId="4" startPc="268438967"/>
-<entry endPc="268439240" name="lowElev" stackId="3" startPc="268438963"/>
-<entry endPc="268439240" name="lat" stackId="2" startPc="268438963"/>
-<entry endPc="268439240" name="dec" stackId="1" startPc="268438963"/>
-<entry endPc="268439339" name="timeString" stackId="3" startPc="268439244"/>
-<entry endPc="268439339" name="timeFormat" stackId="2" startPc="268439244"/>
-<entry endPc="268439340" name="timeObj" stackId="1" startPc="268439240"/>
-<entry endPc="268439496" name="dateFormat" stackId="2" startPc="268439344"/>
-<entry endPc="268439496" name="dateString" stackId="3" startPc="268439344"/>
-<entry endPc="268439497" name="timeObj" stackId="1" startPc="268439340"/>
-<entry endPc="268439569" name="doyString" stackId="2" startPc="268439501"/>
-<entry endPc="268439569" name="doyFormat" stackId="1" startPc="268439501"/>
-<entry endPc="268439639" name="mjdString" stackId="2" startPc="268439574"/>
-<entry endPc="268439639" name="mjdFormat" stackId="1" startPc="268439574"/>
-<entry endPc="268439890" name="dayNumber" stackId="1" startPc="268439640"/>
-<entry endPc="268440115" name="endY" stackId="7" startPc="268439894"/>
-<entry endPc="268440115" name="endX" stackId="5" startPc="268439894"/>
-<entry endPc="268440115" name="pointY" stackId="6" startPc="268439894"/>
-<entry endPc="268440115" name="pointX" stackId="4" startPc="268439894"/>
-<entry endPc="268440116" name="lineLength" stackId="2" startPc="268439890"/>
-<entry endPc="268440116" name="arcRadius" stackId="1" startPc="268439890"/>
-<entry endPc="268440116" name="radian" stackId="3" startPc="268439890"/>
-<entry endPc="268440467" name="dayFrac" stackId="4" startPc="268440310"/>
-<entry endPc="268440467" name="radian" stackId="5" startPc="268440310"/>
-<entry endPc="268440480" name="i" stackId="3" startPc="268440310"/>
-<entry endPc="268440497" name="points" stackId="2" startPc="268440120"/>
-<entry endPc="268440498" name="dc" stackId="1" startPc="268440116"/>
-<entry endPc="268440924" name="ellipseColour" stackId="7" startPc="268440502"/>
-<entry endPc="268440924" name="moonColour" stackId="6" startPc="268440502"/>
-<entry endPc="268440924" name="xRadius" stackId="8" startPc="268440502"/>
-<entry endPc="268440924" name="innerRadius" stackId="5" startPc="268440502"/>
-<entry endPc="268440925" name="dc" stackId="1" startPc="268440498"/>
-<entry endPc="268440925" name="illumination" stackId="3" startPc="268440498"/>
-<entry endPc="268440925" name="side" stackId="2" startPc="268440498"/>
-<entry endPc="268440925" name="fraction" stackId="4" startPc="268440498"/>
-<entry endPc="268441306" name="rightHalf" stackId="3" startPc="268440929"/>
-<entry endPc="268441306" name="rightMode" stackId="7" startPc="268440929"/>
-<entry endPc="268441306" name="leftHalf" stackId="4" startPc="268440929"/>
-<entry endPc="268441306" name="leftMode" stackId="6" startPc="268440929"/>
-<entry endPc="268441306" name="waxing" stackId="5" startPc="268440929"/>
-<entry endPc="268441307" name="dc" stackId="1" startPc="268440925"/>
-<entry endPc="268441307" name="moonIllumination" stackId="2" startPc="268440925"/>
-<entry endPc="268441714" name="arcColour" stackId="7" startPc="268441311"/>
-<entry endPc="268441714" name="sourceSetDegrees" stackId="6" startPc="268441311"/>
-<entry endPc="268441714" name="arcRadius" stackId="8" startPc="268441311"/>
-<entry endPc="268441714" name="sourceRiseDegrees" stackId="5" startPc="268441311"/>
-<entry endPc="268441715" name="rightAscension" stackId="2" startPc="268441307"/>
-<entry endPc="268441715" name="dc" stackId="1" startPc="268441307"/>
-<entry endPc="268441715" name="sourceNumber" stackId="4" startPc="268441307"/>
-<entry endPc="268441715" name="haRange" stackId="3" startPc="268441307"/>
-<entry endPc="268441898" name="points" stackId="3" startPc="268441719"/>
-<entry endPc="268441899" name="lst" stackId="2" startPc="268441715"/>
-<entry endPc="268441899" name="dc" stackId="1" startPc="268441715"/>
-<entry endPc="268443342" name="mjdLabel" stackId="18" startPc="268441903"/>
-<entry endPc="268443342" name="localText" stackId="8" startPc="268441903"/>
-<entry endPc="268443342" name="mjdText" stackId="17" startPc="268441903"/>
-<entry endPc="268443342" name="doyLineY" stackId="14" startPc="268441903"/>
-<entry endPc="268443342" name="localColour" stackId="7" startPc="268441903"/>
-<entry endPc="268443342" name="utcText" stackId="11" startPc="268441903"/>
-<entry endPc="268443342" name="utcColour" stackId="10" startPc="268441903"/>
-<entry endPc="268443342" name="dateText" stackId="13" startPc="268441903"/>
-<entry endPc="268443342" name="doyLabel" stackId="16" startPc="268441903"/>
-<entry endPc="268443342" name="localLabel" stackId="9" startPc="268441903"/>
-<entry endPc="268443342" name="utcLabel" stackId="12" startPc="268441903"/>
-<entry endPc="268443342" name="doyText" stackId="15" startPc="268441903"/>
-<entry endPc="268443343" name="utcTimeString" stackId="3" startPc="268441899"/>
-<entry endPc="268443343" name="dc" stackId="1" startPc="268441899"/>
-<entry endPc="268443343" name="doyString" stackId="5" startPc="268441899"/>
-<entry endPc="268443343" name="mjdString" stackId="6" startPc="268441899"/>
-<entry endPc="268443343" name="localTimeString" stackId="2" startPc="268441899"/>
-<entry endPc="268443343" name="dateString" stackId="4" startPc="268441899"/>
-<entry endPc="268443974" name="rez_cmp_local_bitmap_TimeLabelUTC" stackId="5" startPc="268443355"/>
-<entry endPc="268443974" name="rez_cmp_local_bitmap_TimeLabelLocal" stackId="3" startPc="268443355"/>
-<entry endPc="268443974" name="rez_cmp_local_custom_drawable_17511650651168132722" stackId="2" startPc="268443355"/>
-<entry endPc="268443974" name="rez_cmp_local_bitmap_TimeLabelUTC_fontHeight" stackId="6" startPc="268443355"/>
-<entry endPc="268443974" name="rez_cmp_local_bitmap_TimeLabelLocal_fontHeight" stackId="4" startPc="268443355"/>
-<entry endPc="268443975" name="dc" stackId="1" startPc="268443343"/>
+<entry endPc="268437620" name="b" stackId="2" startPc="268437569"/>
+<entry endPc="268437620" name="n" stackId="1" startPc="268437569"/>
+<entry endPc="268437648" name="f" stackId="1" startPc="268437620"/>
+<entry endPc="268437676" name="d" stackId="1" startPc="268437648"/>
+<entry endPc="268437719" name="r" stackId="1" startPc="268437676"/>
+<entry endPc="268437752" name="deg" stackId="1" startPc="268437719"/>
+<entry endPc="268437785" name="rad" stackId="1" startPc="268437752"/>
+<entry endPc="268438063" name="b" stackId="4" startPc="268437789"/>
+<entry endPc="268438063" name="a" stackId="3" startPc="268437789"/>
+<entry endPc="268438063" name="tu" stackId="7" startPc="268437789"/>
+<entry endPc="268438063" name="gmst" stackId="9" startPc="268437789"/>
+<entry endPc="268438063" name="sidtim" stackId="8" startPc="268437789"/>
+<entry endPc="268438063" name="e" stackId="5" startPc="268437789"/>
+<entry endPc="268438063" name="d" stackId="6" startPc="268437789"/>
+<entry endPc="268438064" name="mjd" stackId="1" startPc="268437785"/>
+<entry endPc="268438064" name="dUT1" stackId="2" startPc="268437785"/>
+<entry endPc="268438102" name="lst" stackId="4" startPc="268438068"/>
+<entry endPc="268438103" name="mjd" stackId="1" startPc="268438064"/>
+<entry endPc="268438103" name="dUT1" stackId="3" startPc="268438064"/>
+<entry endPc="268438103" name="longitude" stackId="2" startPc="268438064"/>
+<entry endPc="268438193" name="calcRequired" stackId="2" startPc="268438107"/>
+<entry endPc="268438194" name="mjd" stackId="1" startPc="268438103"/>
+<entry endPc="268438802" name="n" stackId="3" startPc="268438198"/>
+<entry endPc="268438802" name="alpha" stackId="10" startPc="268438198"/>
+<entry endPc="268438802" name="T" stackId="8" startPc="268438198"/>
+<entry endPc="268438802" name="R" stackId="7" startPc="268438198"/>
+<entry endPc="268438802" name="g" stackId="5" startPc="268438198"/>
+<entry endPc="268438802" name="lambda" stackId="6" startPc="268438198"/>
+<entry endPc="268438802" name="L" stackId="4" startPc="268438198"/>
+<entry endPc="268438802" name="jd" stackId="2" startPc="268438198"/>
+<entry endPc="268438802" name="delta" stackId="11" startPc="268438198"/>
+<entry endPc="268438802" name="epsilon" stackId="9" startPc="268438198"/>
+<entry endPc="268438803" name="mjd" stackId="1" startPc="268438194"/>
+<entry endPc="268438860" name="moonPhase" stackId="4" startPc="268438807"/>
+<entry endPc="268438860" name="numNewMoons" stackId="3" startPc="268438807"/>
+<entry endPc="268438860" name="n" stackId="2" startPc="268438807"/>
+<entry endPc="268438861" name="mjd" stackId="1" startPc="268438803"/>
+<entry endPc="268438944" name="illum" stackId="2" startPc="268438865"/>
+<entry endPc="268438945" name="moonPhase" stackId="1" startPc="268438861"/>
+<entry endPc="268439221" name="cos_haset" stackId="4" startPc="268438949"/>
+<entry endPc="268439222" name="lowElev" stackId="3" startPc="268438945"/>
+<entry endPc="268439222" name="lat" stackId="2" startPc="268438945"/>
+<entry endPc="268439222" name="dec" stackId="1" startPc="268438945"/>
+<entry endPc="268439321" name="timeString" stackId="3" startPc="268439226"/>
+<entry endPc="268439321" name="timeFormat" stackId="2" startPc="268439226"/>
+<entry endPc="268439322" name="timeObj" stackId="1" startPc="268439222"/>
+<entry endPc="268439478" name="dateFormat" stackId="2" startPc="268439326"/>
+<entry endPc="268439478" name="dateString" stackId="3" startPc="268439326"/>
+<entry endPc="268439479" name="timeObj" stackId="1" startPc="268439322"/>
+<entry endPc="268439551" name="doyString" stackId="2" startPc="268439483"/>
+<entry endPc="268439551" name="doyFormat" stackId="1" startPc="268439483"/>
+<entry endPc="268439621" name="mjdString" stackId="2" startPc="268439556"/>
+<entry endPc="268439621" name="mjdFormat" stackId="1" startPc="268439556"/>
+<entry endPc="268439872" name="dayNumber" stackId="1" startPc="268439622"/>
+<entry endPc="268440097" name="endY" stackId="7" startPc="268439876"/>
+<entry endPc="268440097" name="endX" stackId="5" startPc="268439876"/>
+<entry endPc="268440097" name="pointY" stackId="6" startPc="268439876"/>
+<entry endPc="268440097" name="pointX" stackId="4" startPc="268439876"/>
+<entry endPc="268440098" name="lineLength" stackId="2" startPc="268439872"/>
+<entry endPc="268440098" name="arcRadius" stackId="1" startPc="268439872"/>
+<entry endPc="268440098" name="radian" stackId="3" startPc="268439872"/>
+<entry endPc="268440449" name="dayFrac" stackId="4" startPc="268440292"/>
+<entry endPc="268440449" name="radian" stackId="5" startPc="268440292"/>
+<entry endPc="268440462" name="i" stackId="3" startPc="268440292"/>
+<entry endPc="268440479" name="points" stackId="2" startPc="268440102"/>
+<entry endPc="268440480" name="dc" stackId="1" startPc="268440098"/>
+<entry endPc="268440906" name="ellipseColour" stackId="7" startPc="268440484"/>
+<entry endPc="268440906" name="moonColour" stackId="6" startPc="268440484"/>
+<entry endPc="268440906" name="xRadius" stackId="8" startPc="268440484"/>
+<entry endPc="268440906" name="innerRadius" stackId="5" startPc="268440484"/>
+<entry endPc="268440907" name="dc" stackId="1" startPc="268440480"/>
+<entry endPc="268440907" name="illumination" stackId="3" startPc="268440480"/>
+<entry endPc="268440907" name="side" stackId="2" startPc="268440480"/>
+<entry endPc="268440907" name="fraction" stackId="4" startPc="268440480"/>
+<entry endPc="268441328" name="rightHalf" stackId="3" startPc="268440911"/>
+<entry endPc="268441328" name="rightMode" stackId="7" startPc="268440911"/>
+<entry endPc="268441328" name="leftHalf" stackId="4" startPc="268440911"/>
+<entry endPc="268441328" name="leftMode" stackId="6" startPc="268440911"/>
+<entry endPc="268441328" name="waxing" stackId="5" startPc="268440911"/>
+<entry endPc="268441329" name="dc" stackId="1" startPc="268440907"/>
+<entry endPc="268441329" name="moonIllumination" stackId="2" startPc="268440907"/>
+<entry endPc="268441817" name="arcColour" stackId="7" startPc="268441333"/>
+<entry endPc="268441817" name="sourceSetDegrees" stackId="6" startPc="268441333"/>
+<entry endPc="268441817" name="arcRadius" stackId="8" startPc="268441333"/>
+<entry endPc="268441817" name="sourceRiseDegrees" stackId="5" startPc="268441333"/>
+<entry endPc="268441818" name="rightAscension" stackId="2" startPc="268441329"/>
+<entry endPc="268441818" name="dc" stackId="1" startPc="268441329"/>
+<entry endPc="268441818" name="sourceNumber" stackId="4" startPc="268441329"/>
+<entry endPc="268441818" name="haRange" stackId="3" startPc="268441329"/>
+<entry endPc="268442001" name="points" stackId="3" startPc="268441822"/>
+<entry endPc="268442002" name="lst" stackId="2" startPc="268441818"/>
+<entry endPc="268442002" name="dc" stackId="1" startPc="268441818"/>
+<entry endPc="268443445" name="mjdLabel" stackId="18" startPc="268442006"/>
+<entry endPc="268443445" name="localText" stackId="8" startPc="268442006"/>
+<entry endPc="268443445" name="mjdText" stackId="17" startPc="268442006"/>
+<entry endPc="268443445" name="doyLineY" stackId="14" startPc="268442006"/>
+<entry endPc="268443445" name="localColour" stackId="7" startPc="268442006"/>
+<entry endPc="268443445" name="utcText" stackId="11" startPc="268442006"/>
+<entry endPc="268443445" name="utcColour" stackId="10" startPc="268442006"/>
+<entry endPc="268443445" name="dateText" stackId="13" startPc="268442006"/>
+<entry endPc="268443445" name="doyLabel" stackId="16" startPc="268442006"/>
+<entry endPc="268443445" name="localLabel" stackId="9" startPc="268442006"/>
+<entry endPc="268443445" name="utcLabel" stackId="12" startPc="268442006"/>
+<entry endPc="268443445" name="doyText" stackId="15" startPc="268442006"/>
+<entry endPc="268443446" name="utcTimeString" stackId="3" startPc="268442002"/>
+<entry endPc="268443446" name="dc" stackId="1" startPc="268442002"/>
+<entry endPc="268443446" name="doyString" stackId="5" startPc="268442002"/>
+<entry endPc="268443446" name="mjdString" stackId="6" startPc="268442002"/>
+<entry endPc="268443446" name="localTimeString" stackId="2" startPc="268442002"/>
+<entry endPc="268443446" name="dateString" stackId="4" startPc="268442002"/>
+<entry endPc="268444077" name="rez_cmp_local_bitmap_TimeLabelUTC" stackId="5" startPc="268443458"/>
+<entry endPc="268444077" name="rez_cmp_local_bitmap_TimeLabelLocal" stackId="3" startPc="268443458"/>
+<entry endPc="268444077" name="rez_cmp_local_custom_drawable_16572563201924678446" stackId="2" startPc="268443458"/>
+<entry endPc="268444077" name="rez_cmp_local_bitmap_TimeLabelUTC_fontHeight" stackId="6" startPc="268443458"/>
+<entry endPc="268444077" name="rez_cmp_local_bitmap_TimeLabelLocal_fontHeight" stackId="4" startPc="268443458"/>
+<entry endPc="268444078" name="dc" stackId="1" startPc="268443446"/>
 </localVars>
 <annotations/>
 <functions>

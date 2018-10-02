@@ -222,8 +222,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	
 	// Given any number n, put it between 0 and some other number b.
 	function numberBounds(n, b) {
-		if (n > b) {
-			n -= n.toNumber().toDouble();
+		while (n > b) {
+			n -= b;
 		}
 		while (n < 0.0d) {
 			n += b;
@@ -498,20 +498,20 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			rightMode = MOON_ILLUMINATION_OUTSIDE;
 			leftMode = MOON_ILLUMINATION_INSIDE;
 			if (moonIllumination.abs() < 0.5) {
-				rightHalf = moonIllumination.abs();
+				rightHalf = 2.0d * moonIllumination.abs();
 			} else {
 				rightHalf = 1.0d;
-				leftHalf = moonIllumination.abs() - 0.5d;
+				leftHalf = (moonIllumination.abs() - 0.5d) * 2.0d;
 			}
 		} else {
 			// Waning.
 			rightMode = MOON_ILLUMINATION_INSIDE;
 			leftMode = MOON_ILLUMINATION_OUTSIDE;
 			if (moonIllumination < 0.5) {
-				leftHalf = moonIllumination;
+				leftHalf = 2.0d * moonIllumination;
 			} else {
 				leftHalf = 1.0d;
-				rightHalf = moonIllumination - 0.5d;
+				rightHalf = (moonIllumination - 0.5d) * 2.0d;
 			}
 		}
 		if (waxing == true) {
@@ -529,8 +529,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// Draw a source visibility segment.
 	function drawVisibilitySegment(dc, rightAscension, haRange, sourceNumber) {
 		// Calculate the source rise and set radians.
-		var sourceRiseDegrees = degreesBounds(radiansToDegrees(rightAscension - haRange - ZERO_RADIANS));
-		var sourceSetDegrees = degreesBounds(radiansToDegrees(rightAscension + haRange - ZERO_RADIANS));
+		var sourceRiseDegrees = 360.0d - degreesBounds(radiansToDegrees(rightAscension - haRange - ZERO_RADIANS));
+		var sourceSetDegrees = 360.0d - degreesBounds(radiansToDegrees(rightAscension + haRange - ZERO_RADIANS));
+		System.println("source rise,set = " + sourceRiseDegrees.format("%.3f") + "," + sourceSetDegrees.format("%.3f"));
 		
 		// Set the colour based on the source number.
 		var arcColour = Graphics.COLOR_YELLOW;
@@ -557,7 +558,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		}
 
 		// Draw the arc now.
-		dc.drawArc(middleX, middleY, arcRadius, Graphics.ARC_COUNTER_CLOCKWISE, sourceRiseDegrees, sourceSetDegrees);
+		dc.drawArc(middleX, middleY, arcRadius, Graphics.ARC_CLOCKWISE, sourceRiseDegrees, sourceSetDegrees);
 		
 	}
 	
