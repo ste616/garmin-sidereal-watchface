@@ -5,6 +5,7 @@ using Toybox.Lang;
 using Toybox.Application;
 using Toybox.Time.Gregorian;
 using Toybox.Time;
+using Toybox.ActivityMonitor;
 
 class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
@@ -158,8 +159,12 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// And draw the LST hand.
 		drawLSTHand(dc, lst);
 
+		// Get the number of steps.
+		var info = ActivityMonitor.getInfo();
+		var steps = info.steps;
+
 		// Draw the text stuff.
-		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, doyString, mjdString);
+		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, doyString, mjdString, steps);
 		
     }
 
@@ -639,7 +644,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	}
 
 	// Draw all the text elements on the face.
-	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, mjdString) {
+	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, mjdString, numSteps) {
 		// The colour of the local time.
 		var localColour = Graphics.COLOR_YELLOW;
 		// Draw the local text string.		
@@ -709,6 +714,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			:font=>Graphics.FONT_SYSTEM_XTINY, :locX=>mjdText.locX,
 			:locY=>(doyLineY + (0.2 * doyText.height)) });
 		mjdLabel.draw(dc);
+		
+		// Draw the number of steps.
+		var nStepsText = new WatchUi.Text({
+			:text=>numSteps.format("%d"), :color=>Graphics.COLOR_PINK,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_NUMBER_MILD, :locX=>middleX,
+			:locY=>(doyLineY + 1.2 * mjdText.height) });
+		nStepsText.draw(dc); 
 	}
 
 }
