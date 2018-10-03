@@ -20,6 +20,8 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	static const MOON_SIDE_RIGHT = 2;
 	static const MOON_ILLUMINATION_INSIDE = 3;
 	static const MOON_ILLUMINATION_OUTSIDE = 4;
+	static const ELEVATION_TYPE_LOW = 5;
+	static const ELEVATION_TYPE_HIGH = 6;
 
 	var ZERO_RADIANS;
 	var middleX;
@@ -29,6 +31,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	var quarterX;
 	var quarterY;
 	var arcRadius;
+	var fullRadius;
 	var arcExtra;
 	var sunRadius;
 	var SIDEREAL_HAND_LENGTH;
@@ -51,8 +54,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 		// Now the radii of the three LST range segments.
 		sunRadius = (deviceSettings.screenHeight / 2.0) - 3;
+		fullRadius = deviceSettings.screenHeight / 2.0;
 
-		arcExtra = sunRadius - (arcRadius - 1.1 * HOUR_TICK_LENGTH);
+		arcExtra = fullRadius - (arcRadius - 1.2 * HOUR_TICK_LENGTH);
 
 		// The length of the sidereal hand.
 		SIDEREAL_HAND_LENGTH = sunRadius * 0.95;
@@ -72,7 +76,13 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     function onShow() {
     }
 
-    // Update the view
+	// Some storage for the parameters which only need to be computed once.
+	var storage_dialHASetsLow = [];
+	var storage_dialHASetsHigh = [];
+	// Some storage for the parameters which may change for loop to loop.
+	var old_location = [0.0d, 0.0d];
+
+    // Update the view.
     function onUpdate(dc) {
     	// Get the current time, both local and UTC.
         var utcTime = Gregorian.utcInfo(Time.now(), Time.FORMAT_SHORT);
@@ -83,6 +93,12 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 		// Work out where we should calculate the LST for.
     	var loc = earthLocation("atca");
+    	var locationChanged = false;
+    	var locDist = computeDistance(loc, old_location);
+    	if (locDist > 1) {
+    		locationChanged = true;
+    	}
+    	old_location = loc;
         
         // Calculate the sidereal time.
         var lst = mjdToLst(mjd, (loc[1].toDouble() / 360.0d), 0.0d);
@@ -94,26 +110,37 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         var doyString = formatDOY();
         var mjdString = formatMJD();
 
-		// Calculate the Sun's parameters.
-		var sunPos = calculateSunPosition(mjd);
-		// Calculate the hour angle for the Sun's rise/set time.
-		var sunHASet = haset_azel(sunPos[1], loc[0], 0.0d);
-		
-		// The other two sources.
-		var dialSources = [ [ rightAscensionRadians([ 19, 39, 25.026 ]), declinationRadians([ -1, 63, 42, 45.63 ]) ],
+		// The three sources we show arcs for.
+		var dialSources = [ calculateSunPosition(mjd),
+							[ rightAscensionRadians([ 19, 39, 25.026 ]), declinationRadians([ -1, 63, 42, 45.63 ]) ],
 							[ rightAscensionRadians([ 8, 25, 26.869 ]), declinationRadians([ -1, 50, 10, 38.49 ]) ] ];
+		var dialChanges = [ true, false, false ];
+		var lowElevation = [ -18.0d, 12.0d, 12.0d ];
+		var highElevation = [ 0.0d, 30.0d, 30.0d ];
 		// Calculate the HA sets for these sources.
-		var dialHASets = [];
+		var dialHASetsLow = [];
+		var dialHASetsHigh = [];
 		var i;
 		for (i = 0; i < dialSources.size(); i++) {
-			dialHASets.add(haset_azel(dialSources[i][1], loc[0], 12.0d));
+			if ((dialChanges[i] == true) || (locationChanged == true) || (storage_dialHASetsLow.size() <= i)) {
+				dialHASetsLow.add(haset_azel(dialSources[i][1], loc[0], lowElevation[i]));
+				dialHASetsHigh.add(haset_azel(dialSources[i][1], loc[0], highElevation[i]));
+			} else {
+				dialHASetsLow.add(storage_dialHASetsLow[i]);
+				dialHASetsHigh.add(storage_dialHASetsHigh[i]);
+			}
+			if (storage_dialHASetsLow.size() <= i) {
+				storage_dialHASetsLow.add(dialHASetsLow[i]);
+				storage_dialHASetsHigh.add(dialHASetsHigh[i]);
+			} else {
+				storage_dialHASetsLow[i] = dialHASetsLow[i];
+				storage_dialHASetsHigh[i] = dialHASetsHigh[i];
+			}
 		}
 		
 		// Calculate the current moon phase and illumination.
 		var moonPhase = calculateMoonPhase(mjd);
-		System.println("moon phase day = " + (moonPhase * MOON_PHASE_PERIOD).format("%.3f"));
 		var moonIllumination = calculateMoonIllumination(moonPhase);
-		System.println("moon illumination = " + moonIllumination.format("%.3f"));
 
         // Update the view.
 		dc.setColor( Graphics.COLOR_TRANSPARENT, Graphics.COLOR_BLACK );
@@ -124,9 +151,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Draw the 24 hours of the sidereal clock dial.
 		drawSiderealDial(dc);
 		// Draw the source arcs.
-		drawVisibilitySegment(dc, sunPos[0], sunHASet, 0);
 		for (i = 0; i < dialSources.size(); i++) {
-			drawVisibilitySegment(dc, dialSources[i][0], dialHASets[i], (i + 1));
+			drawVisibilitySegment(dc, dialSources[i][0], dialHASetsLow[i], i, ELEVATION_TYPE_LOW);
+			drawVisibilitySegment(dc, dialSources[i][0], dialHASetsHigh[i], i, ELEVATION_TYPE_HIGH);
 		}
 		// And draw the LST hand.
 		drawLSTHand(dc, lst);
@@ -151,6 +178,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     }
 
 	// Our functions.
+	
+	// Calculate the distance between two locations.
+	function computeDistance(loc1, loc2) {
+		var dist = Math.sqrt(Math.pow((loc2[0] - loc1[0]), 2) + Math.pow((loc2[1] - loc1[1]), 2));
+		// The distance is in degrees.
+		return dist;
+	}
+	
 	// Turn HMS into a day fraction.
 	function timeToTurns(utcTime) {
 		var turns = ((utcTime.sec.toDouble()) + (utcTime.min.toDouble() * 60.0d) + (utcTime.hour.toDouble() * 3600.0d)) / 86400.0d;
@@ -356,15 +391,26 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	}
 	
 	// Calculate the Moon phase.
+	var priorMoonMjd = 0.0d;
+	// The Moon's phase.
+	var lunPhase = [ 0.0d, 0.0d ];
 	function calculateMoonPhase(mjd) {
-		// Get the number of days since the new moon reference.
-		var n = mjd + MJD_REFERENCE - NEW_MOON_JD;
-		// How many new moons is that?
-		var numNewMoons = n / MOON_PHASE_PERIOD;
-		// We only care about the fractional bit.
-		var moonPhase = turnFraction(numNewMoons);
-		
-		return (moonPhase);
+		// Check if we need to calculate the Moon's phase.
+		var calcRequired = false;
+		if (mjd > (priorMoonMjd + 0.25d)) {
+			// Calculate the Sun's position every quarter-day.
+			calcRequired = true;
+		}
+		if (calcRequired == true) {
+			// Get the number of days since the new moon reference.
+			var n = mjd + MJD_REFERENCE - NEW_MOON_JD;
+			// How many new moons is that?
+			var numNewMoons = n / MOON_PHASE_PERIOD;
+			// We only care about the fractional bit.
+			priorMoonMjd = mjd;
+			lunPhase = turnFraction(numNewMoons);
+		}
+		return (lunPhase);
 	}
 	
 	// Calculate the Moon illumination.
@@ -499,7 +545,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			// The illumination is low, so the radius is from what's left.
 			xRadius = (1.0d - fraction) * innerRadius;
 		}
-		System.println("xRadius = " + xRadius.format("%.3f"));
 		if (xRadius > 0) {
 			dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
 			dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
@@ -540,12 +585,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 				rightHalf = (moonIllumination - 0.5d) * 2.0d;
 			}
 		}
-		if (waxing == true) {
-			System.println("the moon is waxing");
-		} else {
-			System.println("the moon is waning");
-		}
-		System.println("left / right illumination = " + leftHalf.format("%.3f") + " / " + rightHalf.format("%.3f"));
 
 		// Use our drawing routine now.
 		drawMoonHalf(dc, MOON_SIDE_LEFT, leftMode, leftHalf);
@@ -553,36 +592,35 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	}
 	
 	// Draw a source visibility segment.
-	function drawVisibilitySegment(dc, rightAscension, haRange, sourceNumber) {
+	function drawVisibilitySegment(dc, rightAscension, haRange, sourceNumber, elevationType) {
 		// Calculate the source rise and set radians.
-		System.println("drawing source " + sourceNumber.format("%1d"));
-		System.println("right ascension = " + rightAscension.format("%.6f"));
-		System.println("ha range = " + haRange.format("%.6f"));
 		var sourceRiseDegrees = degreesBounds(360.0 - radiansToDegrees(rightAscension - haRange) + 90.0);
 		var sourceSetDegrees = degreesBounds(360.0 - radiansToDegrees(rightAscension + haRange) + 90.0);
-		System.println("source rise,set = " + sourceRiseDegrees.format("%.3f") + "," + sourceSetDegrees.format("%.3f"));
 		
 		// Set the colour based on the source number.
 		var arcColour = Graphics.COLOR_YELLOW;
 		switch (sourceNumber) {
+		case 0:
+			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_ORANGE : Graphics.COLOR_YELLOW;
+			break;
 		case 1:
-			arcColour = Graphics.COLOR_DK_GREEN;
+			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
 			break;
 		case 2:
-			arcColour = Graphics.COLOR_LT_GRAY;
+			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_DK_GRAY : Graphics.COLOR_LT_GRAY;
 			break;
 		}
 		dc.setColor(arcColour, Graphics.COLOR_TRANSPARENT);
-		dc.setPenWidth(10);
+		dc.setPenWidth(9);
 		
 		// Set the radius of the arc based on the source number.
 		var arcRadius = sunRadius;
 		switch (sourceNumber) {
 		case 1:
-			arcRadius = sunRadius - (arcExtra / 3.0d);
+			arcRadius = fullRadius - (arcExtra / 3.0d);
 			break;
 		case 2:
-			arcRadius = sunRadius - (2.0d * arcExtra / 3.0d);
+			arcRadius = fullRadius - (2.0d * arcExtra / 3.0d);
 			break;
 		}
 
@@ -593,7 +631,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	
 	// Draw the LST hand.
 	function drawLSTHand(dc, lst) {
-		var points = calcLineFromCircleEdge(sunRadius, arcExtra, ZERO_RADIANS + (lst * 2.0d * Math.PI));
+		var points = calcLineFromCircleEdge(fullRadius, arcExtra, ZERO_RADIANS + (lst * 2.0d * Math.PI));
 		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
 		dc.setPenWidth(3);
 		dc.drawLine(points[0], points[1], points[2], points[3]);
