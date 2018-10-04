@@ -37,6 +37,17 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	var sunRadius;
 	var SIDEREAL_HAND_LENGTH;
 
+	// All the colours we have for the elements.
+	var backgroundColour;
+	var lstTicksColour;
+	var localTimeColour;
+	var utcTimeColour;
+	var lstHandColour;
+	var stepsColour;
+	var arcColoursLow;
+	var arcColoursHigh;
+	var moonColour;
+
     function initialize() {
         WatchFace.initialize();
         // Get the size of the screen.
@@ -85,6 +96,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
     // Update the view.
     function onUpdate(dc) {
+    	// Determine which colours to use.
+    	decideColours();
+    
     	// Get the current time, both local and UTC.
         var utcTime = Gregorian.utcInfo(Time.now(), Time.FORMAT_SHORT);
         var clockTime = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
@@ -144,7 +158,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var moonIllumination = calculateMoonIllumination(moonPhase);
 
         // Update the view.
-		dc.setColor( Graphics.COLOR_TRANSPARENT, Graphics.COLOR_BLACK );
+		dc.setColor( Graphics.COLOR_TRANSPARENT, backgroundColour );
 		dc.clear();
 		
 		drawMoonIllumination(dc, moonIllumination);
@@ -183,6 +197,28 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     }
 
 	// Our functions.
+	// Set the colours based on the background colour setting.
+	function decideColours() {
+		// Get the value of the background colour.
+		backgroundColour = Application.Properties.getValue("BackgroundColor");
+		if (backgroundColour == Graphics.COLOR_BLACK) {
+			// Black background.
+			System.println("black background settings");
+			lstTicksColour = Graphics.COLOR_BLUE;
+			moonColour = Graphics.COLOR_DK_GRAY;
+			localTimeColour = Graphics.COLOR_RED;
+			utcTimeColour = Graphics.COLOR_GREEN;
+			stepsColour = Graphics.COLOR_PURPLE;
+		} else if (backgroundColour == Graphics.COLOR_WHITE) {
+			// White background.
+			System.println("white background settings");
+			lstTicksColour = Graphics.COLOR_DK_BLUE;
+			moonColour = Graphics.COLOR_LT_GRAY;
+			localTimeColour = Graphics.COLOR_RED;
+			utcTimeColour = Graphics.COLOR_DK_GREEN;
+			stepsColour = Graphics.COLOR_PINK;
+		}
+	}
 	
 	// Calculate the distance between two locations.
 	function computeDistance(loc1, loc2) {
@@ -508,15 +544,26 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// Draw the sidereal dial.
 	function drawSiderealDial(dc) {
 		var points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 2.0, ZERO_RADIANS);
-		dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_TRANSPARENT);
+		dc.setColor(lstTicksColour, Graphics.COLOR_TRANSPARENT);
 		dc.setPenWidth(7);
 		dc.drawLine(points[0], points[1], points[2], points[3]);
-		dc.setPenWidth(5);
-		for (var i = 1; i < 24; i++) {
+		for (var i = 0; i < 24; i++) {
 			var dayFrac = i.toDouble() / 24.0d;
 			var radian = ZERO_RADIANS + dayFrac * Math.PI * 2.0d;
-			points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 4.0, radian);
-			dc.drawLine(points[0], points[1], points[2], points[3]);
+			// Draw the hour tick.
+			if (i > 0) {
+				points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 4.0, radian);
+				dc.setPenWidth(5);
+				dc.drawLine(points[0], points[1], points[2], points[3]);
+			}
+			// Draw the 20 minute ticks.
+			for (var j = 1; j < 3; j++) {
+				dayFrac += 1.0d / (24.0d * 3.0d);
+				radian = ZERO_RADIANS + dayFrac * Math.PI * 2.0d;
+				points = calcLineFromCircleEdge(arcRadius - 1.1 * HOUR_TICK_LENGTH, HOUR_TICK_LENGTH / 4.0, radian);
+				dc.setPenWidth(2);
+				dc.drawLine(points[0], points[1], points[2], points[3]);		
+			}
 		}
 		dc.setPenWidth(1);
 	}
@@ -536,7 +583,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		}
 
 		// The Moon colour.
-		var moonColour = Graphics.COLOR_DK_GRAY;
 		var ellipseColour = moonColour;
 		var xRadius = innerRadius;
 		if (illumination == MOON_ILLUMINATION_INSIDE) {
@@ -546,7 +592,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			// That means we first illuminate the whole half, then deilluminate the middle bit.
 			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
 			dc.fillCircle(middleX, middleY, innerRadius);
-			ellipseColour = Graphics.COLOR_BLACK;
+			ellipseColour = backgroundColour;
 			// The illumination is low, so the radius is from what's left.
 			xRadius = (1.0d - fraction) * innerRadius;
 		}
@@ -645,33 +691,29 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 	// Draw all the text elements on the face.
 	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, mjdString, numSteps) {
-		// The colour of the local time.
-		var localColour = Graphics.COLOR_YELLOW;
 		// Draw the local text string.		
 		var localText = new WatchUi.Text({
-			:text=>localTimeString, :color=>localColour,
+			:text=>localTimeString, :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>thirdX, :locY=>thirdY });
 		localText.draw(dc);
 		// Make the "LOC" label.
 		var localLabel = new WatchUi.Text({
-			:text=>"LOC", :color=>localColour,
+			:text=>"LOC", :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_RIGHT,
 			:font=>Graphics.FONT_XTINY, :locX=>(thirdX + (localText.width / 2)),
 			:locY=>(thirdY - localText.height) });
 		localLabel.draw(dc);
 		
-		// The colour of the UTC time.
-		var utcColour = Graphics.COLOR_GREEN;
 		// Draw the UTC text string.
 		var utcText = new WatchUi.Text({
-			:text=>utcTimeString, :color=>utcColour,
+			:text=>utcTimeString, :color=>utcTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>(2 * thirdX), :locY=>thirdY });
 		utcText.draw(dc);
 		// Make the "UTC" label.
 		var utcLabel = new WatchUi.Text({
-			:text=>"UTC", :color=>utcColour,
+			:text=>"UTC", :color=>utcTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
 			:font=>Graphics.FONT_XTINY, :locX=>((2 * thirdX) - (utcText.width / 2)),
 			:locY=>(thirdY - utcText.height) });
@@ -679,7 +721,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		
 		// Draw the local date.
 		var dateText = new WatchUi.Text({
-			:text=>dateString, :color=>localColour,
+			:text=>dateString, :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
 			:font=>Graphics.FONT_SMALL, :locX=>middleX,
 			:locY=>(thirdX + localText.height) });
@@ -688,14 +730,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Draw the DOY.
 		var doyLineY = thirdX + localText.height + (0.95 * dateText.height);
 		var doyText = new WatchUi.Text({
-			:text=>doyString, :color=>localColour,
+			:text=>doyString, :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>(thirdX - (localText.width / 2.0)),
 			:locY=>doyLineY });
 		doyText.draw(dc);
 		// And the label.
 		var doyLabel = new WatchUi.Text({
-			:text=>"D", :color=>localColour,
+			:text=>"D", :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
 			:font=>Graphics.FONT_SYSTEM_XTINY, :locX=>(doyText.locX + (0.9 * doyText.width)),
 			:locY=>(doyLineY - (0.23 * doyText.height)) });
@@ -703,13 +745,13 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		
 		// Draw the MJD.
 		var mjdText = new WatchUi.Text({
-			:text=>mjdString, :color=>utcColour,
+			:text=>mjdString, :color=>utcTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_LEFT,
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>middleX,
 			:locY=>doyLineY });
 		mjdText.draw(dc);
 		var mjdLabel = new WatchUi.Text({
-			:text=>"J ", :color=>utcColour,
+			:text=>"J ", :color=>utcTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_RIGHT,
 			:font=>Graphics.FONT_SYSTEM_XTINY, :locX=>mjdText.locX,
 			:locY=>(doyLineY + (0.2 * doyText.height)) });
@@ -717,7 +759,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		
 		// Draw the number of steps.
 		var nStepsText = new WatchUi.Text({
-			:text=>numSteps.format("%d"), :color=>Graphics.COLOR_PINK,
+			:text=>numSteps.format("%d"), :color=>stepsColour,
 			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>middleX,
 			:locY=>(doyLineY + 1.2 * mjdText.height) });
