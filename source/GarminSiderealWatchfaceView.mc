@@ -47,6 +47,10 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	var arcColoursLow;
 	var arcColoursHigh;
 	var moonColour;
+	var moonInverted;
+	var segmentColours;
+	var okBatteryColour;
+	var lowBatteryColour;
 
     function initialize() {
         WatchFace.initialize();
@@ -68,7 +72,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		sunRadius = (deviceSettings.screenHeight / 2.0) - 3;
 		fullRadius = deviceSettings.screenHeight / 2.0;
 
-		arcExtra = fullRadius - (arcRadius - 1.2 * HOUR_TICK_LENGTH);
+		arcExtra = fullRadius - (arcRadius - 1.5 * HOUR_TICK_LENGTH);
 
 		// The length of the sidereal hand.
 		SIDEREAL_HAND_LENGTH = sunRadius * 0.95;
@@ -176,9 +180,18 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Get the number of steps.
 		var info = ActivityMonitor.getInfo();
 		var steps = info.steps;
+		
+		// Get the battery level.
+		var watchStats = System.getSystemStats();
+		var batteryString = watchStats.battery.format("%3d") + "%";
+		var batteryColour = okBatteryColour;
+		if (watchStats.battery <= 20) {
+			batteryColour = lowBatteryColour;
+		}
 
 		// Draw the text stuff.
-		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, doyString, mjdString, steps);
+		drawFaceText(dc, timeStringLocal, timeStringUTC, dateStringLocal, 
+					 doyString, mjdString, steps, batteryString, batteryColour);
 		
     }
 
@@ -206,17 +219,31 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			System.println("black background settings");
 			lstTicksColour = Graphics.COLOR_BLUE;
 			moonColour = Graphics.COLOR_DK_GRAY;
-			localTimeColour = Graphics.COLOR_RED;
-			utcTimeColour = Graphics.COLOR_GREEN;
-			stepsColour = Graphics.COLOR_PURPLE;
+			moonInverted = false;
+			localTimeColour = Graphics.COLOR_WHITE;
+			utcTimeColour = Graphics.COLOR_BLUE;
+			stepsColour = Graphics.COLOR_RED;
+			segmentColours = [ [ Graphics.COLOR_ORANGE, Graphics.COLOR_YELLOW ],
+							   [ Graphics.COLOR_DK_GREEN, Graphics.COLOR_GREEN ],
+							   [ Graphics.COLOR_PURPLE, Graphics.COLOR_PINK ] ];
+			lstHandColour = Graphics.COLOR_RED;
+			okBatteryColour = Graphics.COLOR_GREEN;
+			lowBatteryColour = Graphics.COLOR_RED;
 		} else if (backgroundColour == Graphics.COLOR_WHITE) {
 			// White background.
 			System.println("white background settings");
 			lstTicksColour = Graphics.COLOR_DK_BLUE;
 			moonColour = Graphics.COLOR_LT_GRAY;
-			localTimeColour = Graphics.COLOR_RED;
-			utcTimeColour = Graphics.COLOR_DK_GREEN;
-			stepsColour = Graphics.COLOR_PINK;
+			moonInverted = true;
+			localTimeColour = Graphics.COLOR_BLACK;
+			utcTimeColour = Graphics.COLOR_DK_BLUE;
+			stepsColour = Graphics.COLOR_RED;
+			segmentColours = [ [ Graphics.COLOR_ORANGE, Graphics.COLOR_YELLOW ],
+							   [ Graphics.COLOR_DK_GREEN, Graphics.COLOR_GREEN ],
+							   [ Graphics.COLOR_PURPLE, Graphics.COLOR_PINK ] ];
+			lstHandColour = Graphics.COLOR_DK_RED;
+			okBatteryColour = Graphics.COLOR_DK_GREEN;
+			lowBatteryColour = Graphics.COLOR_DK_RED;
 		}
 	}
 	
@@ -584,6 +611,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 
 		// The Moon colour.
 		var ellipseColour = moonColour;
+		if (moonInverted) {
+			ellipseColour = backgroundColour;
+		}
 		var xRadius = innerRadius;
 		if (illumination == MOON_ILLUMINATION_INSIDE) {
 			// We only illuminate only part of the half.
@@ -591,15 +621,25 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		} else if (illumination == MOON_ILLUMINATION_OUTSIDE) {
 			// That means we first illuminate the whole half, then deilluminate the middle bit.
 			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
+			if (moonInverted) {
+				dc.setColor(backgroundColour, Graphics.COLOR_TRANSPARENT);
+			}
 			dc.fillCircle(middleX, middleY, innerRadius);
 			ellipseColour = backgroundColour;
+			if (moonInverted) {
+				ellipseColour = moonColour;
+			}
 			// The illumination is low, so the radius is from what's left.
 			xRadius = (1.0d - fraction) * innerRadius;
 		}
 		if (xRadius > 0) {
 			dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
 			dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
-		}
+		} else if (moonInverted) {
+			// We have to draw non-illuminated sides too.
+			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
+			dc.fillCircle(middleX, middleY, innerRadius);
+		}	
 			
 		// Reset the clip.
 		dc.clearClip();
@@ -649,30 +689,17 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var sourceSetDegrees = degreesBounds(360.0 - radiansToDegrees(rightAscension + haRange) + 90.0);
 		
 		// Set the colour based on the source number.
-		var arcColour = Graphics.COLOR_YELLOW;
-		switch (sourceNumber) {
-		case 0:
-			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_ORANGE : Graphics.COLOR_YELLOW;
-			break;
-		case 1:
-			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_DK_GREEN : Graphics.COLOR_GREEN;
-			break;
-		case 2:
-			arcColour = (elevationType == ELEVATION_TYPE_LOW) ? Graphics.COLOR_DK_GRAY : Graphics.COLOR_LT_GRAY;
-			break;
+		var arcColour = segmentColours[sourceNumber][0];
+		if (elevationType == ELEVATION_TYPE_HIGH) {
+			arcColour = segmentColours[sourceNumber][1];
 		}
 		dc.setColor(arcColour, Graphics.COLOR_TRANSPARENT);
-		dc.setPenWidth(9);
+		dc.setPenWidth(10);
 		
 		// Set the radius of the arc based on the source number.
 		var arcRadius = sunRadius;
-		switch (sourceNumber) {
-		case 1:
-			arcRadius = fullRadius - (arcExtra / 3.0d);
-			break;
-		case 2:
-			arcRadius = fullRadius - (2.0d * arcExtra / 3.0d);
-			break;
+		if (sourceNumber > 0) {
+			arcRadius = fullRadius - (sourceNumber.toDouble() * arcExtra / 3.0d);
 		}
 
 		// Draw the arc now.
@@ -683,15 +710,16 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	// Draw the LST hand.
 	function drawLSTHand(dc, lst) {
 		var points = calcLineFromCircleEdge(fullRadius, arcExtra, ZERO_RADIANS + (lst * 2.0d * Math.PI));
-		dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_TRANSPARENT);
+		dc.setColor(lstHandColour, Graphics.COLOR_TRANSPARENT);
 		dc.setPenWidth(3);
 		dc.drawLine(points[0], points[1], points[2], points[3]);
 		dc.setPenWidth(1); 
 	}
 
 	// Draw all the text elements on the face.
-	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, mjdString, numSteps) {
-		// Draw the local text string.		
+	function drawFaceText(dc, localTimeString, utcTimeString, dateString, doyString, 
+						  mjdString, numSteps, batteryString, batteryColour) {
+		// Draw the local text string.
 		var localText = new WatchUi.Text({
 			:text=>localTimeString, :color=>localTimeColour,
 			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
@@ -718,6 +746,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			:font=>Graphics.FONT_XTINY, :locX=>((2 * thirdX) - (utcText.width / 2)),
 			:locY=>(thirdY - utcText.height) });
 		utcLabel.draw(dc);
+		
+		// Put the battery level on the top.
+		var batteryText = new WatchUi.Text({
+			:text=>batteryString, :color=>batteryColour,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_XTINY, :locX=>middleX,
+			:locY=>(utcLabel.locY - 0.7 * utcLabel.height) });
+		batteryText.draw(dc);
 		
 		// Draw the local date.
 		var dateText = new WatchUi.Text({
@@ -764,6 +800,12 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			:font=>Graphics.FONT_NUMBER_MILD, :locX=>middleX,
 			:locY=>(doyLineY + 1.2 * mjdText.height) });
 		nStepsText.draw(dc); 
+		var nStepsLabel = new WatchUi.Text({
+			:text=>"steps", :color=>stepsColour,
+			:justification=>Graphics.TEXT_JUSTIFY_CENTER,
+			:font=>Graphics.FONT_XTINY, :locX=>middleX,
+			:locY=>(nStepsText.locY + 0.8 * nStepsText.height) });
+		nStepsLabel.draw(dc);
 	}
 
 }
