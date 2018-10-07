@@ -6,5 +6,51 @@
             <listEntry value="0xFFFFFF">@Strings.ColorWhite</listEntry>
         </settingConfig>
     </setting>
-
+    <setting propertyKey="@Properties.SiderealLocationType" title="@Strings.SiderealLocationTypeTitle">
+    	<settingConfig type="list">
+    		<listEntry value="0">@Strings.SiderealLocationGPS</listEntry>
+    		<listEntry value="1">@Strings.SiderealLocationNamed</listEntry>
+    		<listEntry value="2">@Strings.SiderealLocationLatLon</listEntry></settingConfig></setting>
+    <setting propertyKey="@Properties.LocationName" title="@Strings.LocationNameTitle">
+    	<settingConfig type="list">
+    		<listEntry value="0">@Strings.LocationNameATCA</listEntry>
+    		<listEntry value="1">@Strings.LocationNameParkes</listEntry>
+    		</settingConfig></setting>
+   	<setting propertyKey="@Properties.LocationLatitude" title="@Strings.LocationLatitude">
+   		<settingConfig type="numeric"></settingConfig></setting>
+   	<setting propertyKey="@Properties.LocationLongitude" title="@Strings.LocationLongitude">
+   		<settingConfig type="numeric"></settingConfig></setting>
+   	<setting propertyKey="@Properties.Source1Type" title="@Strings.Source1TypeTitle">
+   		<settingConfig type="list">
+   			<listEntry value="0">@Strings.SourceTypeNamed</listEntry>
+   			<listEntry value="1">@Strings.SourceTypeRaDec</listEntry>
+   		</settingConfig></setting>
+   	<setting propertyKey="@Properties.Source2Type" title="@Strings.Source2TypeTitle">
+   		<settingConfig type="list">
+   			<listEntry value="0">@Strings.SourceTypeNamed</listEntry>
+   			<listEntry value="1">@Strings.SourceTypeRaDec</listEntry>
+   		</settingConfig></setting>
+   	<setting propertyKey="@Properties.Source3Type" title="@Strings.Source3TypeTitle">
+   		<settingConfig type="list">
+   			<listEntry value="0">@Strings.SourceTypeNamed</listEntry>
+   			<listEntry value="1">@Strings.SourceTypeRaDec</listEntry>
+   		</settingConfig></setting>
+	<setting propertyKey="@Properties.Source1Name" title="@Strings.Source1NameTitle">
+		<settingConfig type="alphaNumeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source2Name" title="@Strings.Source2NameTitle">
+		<settingConfig type="alphaNumeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source3Name" title="@Strings.Source3NameTitle">
+		<settingConfig type="alphaNumeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source1Ra" title="@Strings.Source1RaTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source1Dec" title="@Strings.Source1DecTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source2Ra" title="@Strings.Source2RaTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source2Dec" title="@Strings.Source2DecTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source3Ra" title="@Strings.Source3RaTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source3Dec" title="@Strings.Source3DecTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
 </settings>

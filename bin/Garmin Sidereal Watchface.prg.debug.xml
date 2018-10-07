@@ -385,16 +385,16 @@
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="53" lineNum="802" pc="268445990" symbol="drawFaceText"/>
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="53" lineNum="803" pc="268446004" symbol="drawFaceText"/>
 <entry filename="/home/ste616/usr/src/garmin-sidereal-watchface/source/GarminSiderealWatchfaceView.mc" id="53" lineNum="808" pc="268446154" symbol="drawFaceText"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="29" pc="268446169" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="33" pc="268446181" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="34" pc="268446205" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="35" pc="268446376" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="36" pc="268446409" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="37" pc="268446461" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="38" pc="268446632" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="39" pc="268446665" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="40" pc="268446717" symbol="WatchFace"/>
-<entry filename="/home/ste616/Rez" id="60" lineNum="43" pc="268446763" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="46" pc="268446169" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="50" pc="268446181" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="51" pc="268446205" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="52" pc="268446376" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="53" pc="268446409" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="54" pc="268446461" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="55" pc="268446632" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="56" pc="268446665" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="57" pc="268446717" symbol="WatchFace"/>
+<entry filename="/home/ste616/Rez" id="60" lineNum="60" pc="268446763" symbol="WatchFace"/>
 </pcToLineNum>
 <symbolTable>
 <entry id="52" method="true" symbol="turnFraction"/>
@@ -406,6 +406,8 @@
 <entry id="71" method="true" symbol="formatDate"/>
 <entry field="true" id="14" symbol="middleY"/>
 <entry field="true" id="13" symbol="middleX"/>
+<entry field="true" id="110" symbol="SiderealLocationNamed"/>
+<entry field="true" id="118" symbol="Source2NameTitle"/>
 <entry id="8389124" method="true" symbol="onUpdate"/>
 <entry field="true" id="26" symbol="localTimeColour"/>
 <entry id="8389349" symbol="justification"/>
@@ -413,18 +415,23 @@
 <entry id="49" method="true" symbol="calculateDayOfYear"/>
 <entry field="true" id="16" symbol="thirdY"/>
 <entry field="true" id="15" symbol="thirdX"/>
-<entry field="true" id="99" symbol="ColorBlue"/>
 <entry field="true" id="33" symbol="moonInverted"/>
 <entry id="79" method="true" symbol="drawVisibilitySegment"/>
+<entry field="true" id="100" symbol="Source3NameTitle"/>
+<entry field="true" id="120" symbol="SiderealLocationTypeTitle"/>
 <entry field="true" id="43" symbol="baseMjd"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+<entry field="true" id="106" symbol="Source1DecTitle"/>
 <entry id="8388645" module="true" symbol="Time"/>
 <entry id="8388770" module="true" object="true" symbol="Strings"/>
 <entry field="true" id="27" symbol="utcTimeColour"/>
 <entry field="true" id="88" symbol="MOON_PHASE_PERIOD"/>
 <entry id="50" method="true" symbol="earthLocation"/>
+<entry field="true" id="103" symbol="Source3DecTitle"/>
+<entry field="true" id="122" symbol="LocationNameATCA"/>
+<entry field="true" id="113" symbol="LocationNameParkes"/>
 <entry field="true" id="82" symbol="HOUR_TICK_LENGTH"/>
-<entry field="true" id="106" symbol="ColorWhite"/>
+<entry field="true" id="108" symbol="ColorWhite"/>
 <entry id="8389280" method="true" symbol="getInitialView"/>
 <entry id="8389068" method="true" symbol="draw"/>
 <entry id="8389377" method="true" symbol="onExitSleep"/>
@@ -433,30 +440,36 @@
 <entry id="8388640" module="true" symbol="Lang"/>
 <entry id="8388639" module="true" symbol="Graphics"/>
 <entry field="true" id="38" symbol="storage_dialHASetsHigh"/>
-<entry field="true" id="105" symbol="ColorBlack"/>
+<entry field="true" id="114" symbol="ColorBlack"/>
 <entry id="8388769" module="true" object="true" symbol="Rez"/>
 <entry id="8389123" method="true" symbol="onShow"/>
+<entry field="true" id="101" symbol="LocationLatitude"/>
 <entry id="8388924" module="true" symbol="Gregorian"/>
 <entry id="80" method="true" symbol="drawLSTHand"/>
+<entry field="true" id="121" symbol="SiderealLocationGPS"/>
 <entry field="true" id="28" symbol="lstHandColour"/>
 <entry id="68" method="true" symbol="calculateMoonIllumination"/>
 <entry field="true" id="30" symbol="arcColoursLow"/>
 <entry field="true" id="94" symbol="ELEVATION_TYPE_HIGH"/>
-<entry field="true" id="100" symbol="ColorRed"/>
+<entry field="true" id="117" symbol="Source1TypeTitle"/>
 <entry field="true" id="31" symbol="arcColoursHigh"/>
-<entry field="true" id="101" symbol="ForegroundColorTitle"/>
+<entry field="true" id="107" symbol="LocationNameTitle"/>
 <entry id="8388702" method="true" symbol="initialize"/>
 <entry field="true" id="44" symbol="priorUtc"/>
 <entry field="true" id="62" symbol="solRaDec"/>
-<entry field="true" id="107" symbol="AppName"/>
+<entry field="true" id="102" symbol="AppName"/>
 <entry field="true" id="91" symbol="MOON_ILLUMINATION_INSIDE"/>
 <entry field="true" id="93" symbol="ELEVATION_TYPE_LOW"/>
 <entry id="70" method="true" symbol="formatTime"/>
 <entry id="8389375" method="true" object="true" symbol="WatchFace"/>
+<entry field="true" id="104" symbol="Source2TypeTitle"/>
 <entry id="67" method="true" symbol="calculateMoonPhase"/>
+<entry field="true" id="115" symbol="Source3RaTitle"/>
 <entry field="true" id="36" symbol="lowBatteryColour"/>
+<entry field="true" id="111" symbol="Source1RaTitle"/>
 <entry id="8390146" module="true" object="true" symbol="Background"/>
 <entry field="true" id="19" symbol="arcRadius"/>
+<entry field="true" id="124" symbol="Source3TypeTitle"/>
 <entry field="true" id="46" symbol="priorYear"/>
 <entry field="true" id="97" symbol="LauncherIcon"/>
 <entry id="11" object="true" symbol="GarminSiderealWatchfaceView"/>
@@ -470,18 +483,19 @@
 <entry field="true" id="8389065" symbol="locY"/>
 <entry field="true" id="8389064" symbol="locX"/>
 <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+<entry field="true" id="123" symbol="LocationLongitude"/>
 <entry id="59" method="true" symbol="gst"/>
 <entry id="8389122" method="true" symbol="onLayout"/>
-<entry field="true" id="103" symbol="ColorDarkGray"/>
 <entry id="8389279" method="true" symbol="onStart"/>
+<entry field="true" id="109" symbol="SourceTypeRaDec"/>
 <entry field="true" id="22" symbol="sunRadius"/>
 <entry id="8389376" method="true" symbol="onEnterSleep"/>
 <entry id="8389348" symbol="font"/>
-<entry field="true" id="98" symbol="ColorLightGray"/>
 <entry id="57" method="true" symbol="rightAscensionRadians"/>
 <entry id="60" method="true" symbol="mjdToLst"/>
 <entry id="8389347" symbol="color"/>
-<entry field="true" id="102" symbol="BackgroundColorTitle"/>
+<entry field="true" id="98" symbol="SourceTypeNamed"/>
+<entry field="true" id="99" symbol="BackgroundColorTitle"/>
 <entry id="40" method="true" symbol="decideColours"/>
 <entry field="true" id="65" symbol="priorMoonMjd"/>
 <entry field="true" id="23" symbol="SIDEREAL_HAND_LENGTH"/>
@@ -497,8 +511,8 @@
 <entry id="81" method="true" symbol="drawFaceText"/>
 <entry id="56" method="true" symbol="radiansToDegrees"/>
 <entry field="true" id="25" symbol="lstTicksColour"/>
+<entry field="true" id="105" symbol="Source2DecTitle"/>
 <entry id="75" method="true" symbol="calcLineFromCircleEdge"/>
-<entry field="true" id="104" symbol="MilitaryFormatTitle"/>
 <entry field="true" id="39" symbol="old_location"/>
 <entry id="41" method="true" symbol="computeDistance"/>
 <entry field="true" id="32" symbol="moonColour"/>
@@ -516,18 +530,21 @@
 <entry id="58" method="true" symbol="declinationRadians"/>
 <entry field="true" id="18" symbol="quarterY"/>
 <entry field="true" id="17" symbol="quarterX"/>
+<entry field="true" id="119" symbol="SiderealLocationLatLon"/>
 <entry id="54" method="true" symbol="radiansBounds"/>
 <entry field="true" id="35" symbol="okBatteryColour"/>
 <entry field="true" id="12" symbol="ZERO_RADIANS"/>
 <entry field="true" id="21" symbol="arcExtra"/>
 <entry field="true" id="37" symbol="storage_dialHASetsLow"/>
 <entry id="55" method="true" symbol="degreesToRadians"/>
+<entry field="true" id="112" symbol="Source2RaTitle"/>
 <entry field="true" id="92" symbol="MOON_ILLUMINATION_OUTSIDE"/>
 <entry field="true" id="84" symbol="JULIAN_DAY_J2000"/>
 <entry field="true" id="85" symbol="JULIAN_DAYS_IN_CENTURY"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
 <entry id="69" method="true" symbol="haset_azel"/>
 <entry id="8388633" module="true" symbol="ActivityMonitor"/>
+<entry field="true" id="116" symbol="Source1NameTitle"/>
 <entry id="8388635" module="true" symbol="Application"/>
 <entry field="true" id="34" symbol="segmentColours"/>
 </symbolTable>
@@ -706,8 +723,8 @@
 <entry endPc="268446169" name="mjdString" stackId="6" startPc="268444211"/>
 <entry endPc="268446800" name="rez_cmp_local_bitmap_TimeLabelUTC" stackId="5" startPc="268446181"/>
 <entry endPc="268446800" name="rez_cmp_local_bitmap_TimeLabelLocal" stackId="3" startPc="268446181"/>
-<entry endPc="268446800" name="rez_cmp_local_custom_drawable_12007002021736146801" stackId="2" startPc="268446181"/>
 <entry endPc="268446800" name="rez_cmp_local_bitmap_TimeLabelUTC_fontHeight" stackId="6" startPc="268446181"/>
+<entry endPc="268446800" name="rez_cmp_local_custom_drawable_19760979439488758513" stackId="2" startPc="268446181"/>
 <entry endPc="268446800" name="rez_cmp_local_bitmap_TimeLabelLocal_fontHeight" stackId="4" startPc="268446181"/>
 <entry endPc="268446801" name="dc" stackId="1" startPc="268446169"/>
 </localVars>

@@ -3,14 +3,30 @@
     <string id="AppName">Garmin Sidereal Watchface</string>
 
     <string id="BackgroundColorTitle">Background Color</string>
-    <string id="ForegroundColorTitle">Foreground Color</string>
-    <string id="MilitaryFormatTitle">Military Format for 24 Hour Time</string>
+    <string id="SiderealLocationTypeTitle">Sidereal Time Location Type</string>
+    <string id="SiderealLocationGPS">GPS</string>
 
     <string id="ColorBlack">Black</string>
-    <string id="ColorDarkGray">Dark Gray</string>
-    <string id="ColorLightGray">Light Gray</string>
+    <string id="SiderealLocationNamed">Location</string>
+    <string id="SiderealLocationLatLon">Lat/Lon</string>
     <string id="ColorWhite">White</string>
-    <string id="ColorBlue">Blue</string>
-    <string id="ColorRed">Red</string>
-
+    <string id="LocationNameTitle">Sidereal Time Location</string>
+    <string id="LocationNameATCA">ATCA</string>
+    <string id="LocationNameParkes">Parkes</string>
+    <string id="LocationLatitude">Latitude</string>
+    <string id="LocationLongitude">Longitude</string>
+	<string id="Source1TypeTitle">Source 1 Type</string>
+	<string id="Source2TypeTitle">Source 2 Type</string>
+	<string id="Source3TypeTitle">Source 3 Type</string>
+	<string id="SourceTypeNamed">Named Source</string>
+	<string id="SourceTypeRaDec">RA/Dec (J2000)</string>
+	<string id="Source1NameTitle">Source 1 Name</string>
+	<string id="Source2NameTitle">Source 2 Name</string>
+	<string id="Source3NameTitle">Source 3 Name</string>
+	<string id="Source1RaTitle">Source 1 R.A. (J2000, decimal hours)</string>
+	<string id="Source1DecTitle">Source 1 Dec. (J2000, decimal degrees)</string>
+	<string id="Source2RaTitle">Source 2 R.A. (J2000, decimal hours)</string>
+	<string id="Source2DecTitle">Source 2 Dec. (J2000, decimal degrees)</string>
+	<string id="Source3RaTitle">Source 3 R.A. (J2000, decimal hours)</string>
+	<string id="Source3DecTitle">Source 3 Dec. (J2000, decimal degrees)</string>
 </strings>

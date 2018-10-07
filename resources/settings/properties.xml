@@ -1,7 +1,20 @@
 <properties>
 
-    <property id="BackgroundColor" type="number">0x000000</property>
-    <property id="ForegroundColor" type="number">0xFF0000</property>
-    <property id="UseMilitaryFormat" type="boolean">false</property>
-
+    <property id="BackgroundColor" type="number">0xFFFFFF</property>
+    <property id="SiderealLocationType" type="number">0</property>
+    <property id="LocationName" type="number">0</property>
+    <property id="LocationLatitude" type="float">-30.3128846</property>
+    <property id="LocationLongitude" type="float">149.5501388</property>
+    <property id="Source1Type" type="number">0</property>
+    <property id="Source2Type" type="number">1</property>
+    <property id="Source3Type" type="number">1</property>
+	<property id="Source1Name" type="string">Sun</property>
+	<property id="Source2Name" type="string">N/A</property>
+	<property id="Source3Name" type="string">N/A</property>
+	<property id="Source1Ra" type="float">0</property>
+	<property id="Source1Dec" type="float">0</property>
+	<property id="Source2Ra" type="float">19.65695166</property>
+	<property id="Source2Dec" type="float">-63.712675</property>
+	<property id="Source3Ra" type="float">8.424130277</property>
+	<property id="Source3Dec" type="float">-50.17735833</property>
 </properties>
