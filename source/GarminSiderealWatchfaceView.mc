@@ -111,7 +111,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         var mjd = utcToMjd(utcTime);
 
 		// Work out where we should calculate the LST for.
-    	var loc = earthLocation("atca");
+    	var loc = earthLocation();
     	var locationChanged = false;
     	var locDist = computeDistance(loc, old_location);
     	if (locDist > 1) {
@@ -318,13 +318,16 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	}
 
 	// Routine to get the location to calculate the LST for.
-	function earthLocation(locationName) {
+	static const SIDEREAL_LOCATION_TYPE_GPS = 0;
+	static const SIDEREAL_LOCATION_TYPE_NAMED = 1;
+	static const SIDEREAL_LOCATION_TYPE_LATLON = 2;
+	static const SIDEREAL_LOCATION_NAME_ATCA = 0;
+	static const SIDEREAL_LOCATION_NAME_PARKES = 1;
+	function earthLocation() {
 		var loc = [ 0.0, 0.0 ];
-		if (locationName.equals("atca")) {
-			// Send back the location of the Australia Telescope Compact Array.
-			loc[0] = -30.3128846d;
-			loc[1] = 149.5501388d;
-		} else {
+		// Get the watchface setting.
+		var locationType = Application.Properties.getValue("SiderealLocationType");
+		if (locationType == SIDEREAL_LOCATION_TYPE_GPS) {
 			// Send back the location of the watch.
    			var act = Activity.getActivityInfo().currentLocation;
 	    	if (act == null) {
@@ -332,6 +335,20 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     		} else {
     			loc = act.toDegrees();
     		}				
+		} else if (locationType == SIDEREAL_LOCATION_TYPE_NAMED) {
+			var locationName = Application.Properties.getValue("LocationName");
+			if (locationName == SIDEREAL_LOCATION_NAME_ATCA) {
+				// Send back the location of the Australia Telescope Compact Array.
+				loc[0] = -30.3128846d;
+				loc[1] = 149.5501388d;
+			} else if (locationName == SIDEREAL_LOCATION_NAME_PARKES) {
+				// The Parkes 64m telescope.
+				loc[0] = -32.99840638d;
+				loc[1] = 148.26351d;
+			}
+		} else if (locationType == SIDEREAL_LOCATION_TYPE_LATLON) {
+			loc[0] = Application.Properties.getValue("LocationLatitude").toDouble();
+			loc[1] = Application.Properties.getValue("LocationLongitude").toDouble();
 		}
 		return loc;
 	}

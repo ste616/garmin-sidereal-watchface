@@ -13,8 +13,8 @@
     <string id="LocationNameTitle">Sidereal Time Location</string>
     <string id="LocationNameATCA">ATCA</string>
     <string id="LocationNameParkes">Parkes</string>
-    <string id="LocationLatitude">Latitude</string>
-    <string id="LocationLongitude">Longitude</string>
+    <string id="LocationLatitude">Latitude (decimal deg)</string>
+    <string id="LocationLongitude">Longitude (decimal deg)</string>
 	<string id="Source1TypeTitle">Source 1 Type</string>
 	<string id="Source2TypeTitle">Source 2 Type</string>
 	<string id="Source3TypeTitle">Source 3 Type</string>
