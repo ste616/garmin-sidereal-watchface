@@ -92,9 +92,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
     function onShow() {
     }
 
-	// Some storage for the parameters which only need to be computed once.
-	var storage_dialHASetsLow = [];
-	var storage_dialHASetsHigh = [];
 	// Some storage for the parameters which may change for loop to loop.
 	var old_location = [0.0d, 0.0d];
 
@@ -130,32 +127,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         var mjdString = formatMJD();
 
 		// The three sources we show arcs for.
-		var dialSources = [ calculateSunPosition(mjd),
-							[ rightAscensionRadians([ 19, 39, 25.026 ]), declinationRadians([ -1, 63, 42, 45.63 ]) ],
-							[ rightAscensionRadians([ 8, 25, 26.869 ]), declinationRadians([ -1, 50, 10, 38.49 ]) ] ];
-		var dialChanges = [ true, false, false ];
-		var lowElevation = [ -18.0d, 12.0d, 12.0d ];
-		var highElevation = [ 0.0d, 30.0d, 30.0d ];
-		// Calculate the HA sets for these sources.
-		var dialHASetsLow = [];
-		var dialHASetsHigh = [];
-		var i;
-		for (i = 0; i < dialSources.size(); i++) {
-			if ((dialChanges[i] == true) || (locationChanged == true) || (storage_dialHASetsLow.size() <= i)) {
-				dialHASetsLow.add(haset_azel(dialSources[i][1], loc[0], lowElevation[i]));
-				dialHASetsHigh.add(haset_azel(dialSources[i][1], loc[0], highElevation[i]));
-			} else {
-				dialHASetsLow.add(storage_dialHASetsLow[i]);
-				dialHASetsHigh.add(storage_dialHASetsHigh[i]);
-			}
-			if (storage_dialHASetsLow.size() <= i) {
-				storage_dialHASetsLow.add(dialHASetsLow[i]);
-				storage_dialHASetsHigh.add(dialHASetsHigh[i]);
-			} else {
-				storage_dialHASetsLow[i] = dialHASetsLow[i];
-				storage_dialHASetsHigh[i] = dialHASetsHigh[i];
-			}
-		}
+		var dialHASets = dialSourceCompute(mjd, loc, locationChanged);
 		
 		// Calculate the current moon phase and illumination.
 		var moonPhase = calculateMoonPhase(mjd);
@@ -170,9 +142,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Draw the 24 hours of the sidereal clock dial.
 		drawSiderealDial(dc);
 		// Draw the source arcs.
-		for (i = 0; i < dialSources.size(); i++) {
-			drawVisibilitySegment(dc, dialSources[i][0], dialHASetsLow[i], i, ELEVATION_TYPE_LOW);
-			drawVisibilitySegment(dc, dialSources[i][0], dialHASetsHigh[i], i, ELEVATION_TYPE_HIGH);
+		for (var i = 0; i < 3; i++) {
+			drawVisibilitySegment(dc, dialHASets[2][i][0], dialHASets[0][i], i, ELEVATION_TYPE_LOW);
+			drawVisibilitySegment(dc, dialHASets[2][i][0], dialHASets[1][i], i, ELEVATION_TYPE_HIGH);
 		}
 		// And draw the LST hand.
 		drawLSTHand(dc, lst);
@@ -216,7 +188,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		backgroundColour = Application.Properties.getValue("BackgroundColor");
 		if (backgroundColour == Graphics.COLOR_BLACK) {
 			// Black background.
-			System.println("black background settings");
 			lstTicksColour = Graphics.COLOR_BLUE;
 			moonColour = Graphics.COLOR_DK_GRAY;
 			moonInverted = false;
@@ -231,7 +202,6 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 			lowBatteryColour = Graphics.COLOR_RED;
 		} else if (backgroundColour == Graphics.COLOR_WHITE) {
 			// White background.
-			System.println("white background settings");
 			lstTicksColour = Graphics.COLOR_DK_BLUE;
 			moonColour = Graphics.COLOR_LT_GRAY;
 			moonInverted = true;
@@ -521,6 +491,88 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		// Return the HA, in radians.
 		//return (Math.acos(cos_haset) * 24.0d / (Math.PI * 2.0d));
 		return (Math.acos(cos_haset));
+	}
+	
+	// Get the source location settings and return the dial positions.
+	// We need some storage to keep values that don't change.
+	var storage_dialHASetsLow = [];
+	var storage_dialHASetsMid = [];
+	var storage_position = [];
+	function dialSourceCompute(mjd, loc, locationChanged) {
+		// The positions of the sources we show.
+		var dialHASets = [ [], [], [] ];
+		for (var i = 1; i <= 3; i++) {
+			var sourceDetails = getSettingsSource(i, mjd);
+			dialHASets[2].add(sourceDetails[0]);
+			if (storage_position.size() <= (i - 1)) {
+				storage_position.add(sourceDetails[0]);
+			}
+			if ((sourceDetails[1] == true) || // Source changes position.
+				(locationChanged == true) || // The location of the watch has changed.
+				(storage_dialHASetsLow.size() <= (i - 1)) || // We haven't initialised.
+				(distanceSources(storage_position[(i - 1)], // Source has different position.
+								 sourceDetails[0]) > degreesToRadians(1.0d))
+				) {
+				// Calculate the new dial positions.
+				dialHASets[0].add(haset_azel(sourceDetails[0][1], loc[0], sourceDetails[2]));
+				dialHASets[1].add(haset_azel(sourceDetails[0][1], loc[0], sourceDetails[3]));
+			} else {
+				// We can just get the dial positions from storage.
+				dialHASets[0].add(storage_dialHASetsLow[(i - 1)]);
+				dialHASets[1].add(storage_dialHASetsMid[(i - 1)]);
+			}
+			
+			// Add the dial positions to storage now.
+			if (storage_dialHASetsLow.size() <= (i - 1)) {
+				storage_dialHASetsLow.add(dialHASets[0]);
+				storage_dialHASetsMid.add(dialHASets[1]);
+			} else {
+				storage_dialHASetsLow[(i - 1)] = dialHASets[0];
+				storage_dialHASetsMid[(i - 1)] = dialHASets[1];
+			}
+			storage_position[(i - 1)] = sourceDetails[0];
+		}
+		return dialHASets;
+	}
+	
+	// Calculate the distance between two source positions.
+	function distanceSources(src1Pos, src2Pos) {
+		var dist = Math.sqrt(Math.pow((src2Pos[0] - src1Pos[1]), 2) +
+							 Math.pow((src2Pos[1] - src1Pos[1]), 2));
+		// The distance is in radians.
+		return dist;
+	}
+	
+	// Get a source from the settings.
+	static const SOURCE_TYPE_NAMED = 0;
+	static const SOURCE_TYPE_RADEC = 1;
+	static const SOURCE_NAMED_SUN = 0;
+	function getSettingsSource(sourceNum, mjd) {
+		if ((sourceNum < 1) || (sourceNum > 3)) {
+			sourceNum = 1;
+		}
+		// Each setting is prefixed by this string.
+		var srcPrefix = "Source" + sourceNum.format("%1d");
+		// Get the elevation limits, which are independent of source type.
+		var srcLowEl = Application.Properties.getValue(srcPrefix + "LowEl").toDouble();
+		var srcMidEl = Application.Properties.getValue(srcPrefix + "MidEl").toDouble();
+		
+		// Do different things depending on the type of source the user has chosen.
+		// But the return value is always an array:
+		// [ [ ra (rad), dec (rad) ], changing (bool), lowEl (deg), midEl (deg) ]
+		var srcType = Application.Properties.getValue(srcPrefix + "Type");
+		if (srcType == SOURCE_TYPE_NAMED) {
+			var srcName = Application.Properties.getValue(srcPrefix + "Name");
+			if (srcName == SOURCE_NAMED_SUN) {
+				return [ calculateSunPosition(mjd), true, srcLowEl, srcMidEl ];
+			}
+		} else if (srcType == SOURCE_TYPE_RADEC) {
+			var srcRa = Application.Properties.getValue(srcPrefix + "Ra").toDouble();
+			var srcDec = Application.Properties.getValue(srcPrefix + "Dec").toDouble();
+			var srcPos = [ degreesToRadians(srcRa * 15.0d), degreesToRadians(srcDec) ];
+			return [ srcPos, false, srcLowEl, srcMidEl ];
+		}
+		return [ [ 0.0d, 0.0d ], false, 0.0d, 12.0d ];
 	}
 	
 	// Format a time object into a string for the watch face.

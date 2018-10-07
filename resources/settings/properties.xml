@@ -8,13 +8,19 @@
     <property id="Source1Type" type="number">0</property>
     <property id="Source2Type" type="number">1</property>
     <property id="Source3Type" type="number">1</property>
-	<property id="Source1Name" type="string">Sun</property>
-	<property id="Source2Name" type="string">N/A</property>
-	<property id="Source3Name" type="string">N/A</property>
+	<property id="Source1Name" type="number">0</property>
+	<property id="Source2Name" type="number">0</property>
+	<property id="Source3Name" type="number">0</property>
 	<property id="Source1Ra" type="float">0</property>
 	<property id="Source1Dec" type="float">0</property>
 	<property id="Source2Ra" type="float">19.65695166</property>
 	<property id="Source2Dec" type="float">-63.712675</property>
 	<property id="Source3Ra" type="float">8.424130277</property>
 	<property id="Source3Dec" type="float">-50.17735833</property>
+	<property id="Source1LowEl" type="float">-18.0</property>
+	<property id="Source2LowEl" type="float">12.0</property>
+	<property id="Source3LowEl" type="float">12.0</property>
+	<property id="Source1MidEl" type="float">0.0</property>
+	<property id="Source2MidEl" type="float">30.0</property>
+	<property id="Source3MidEl" type="float">30.0</property>
 </properties>

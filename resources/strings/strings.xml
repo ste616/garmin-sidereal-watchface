@@ -24,9 +24,16 @@
 	<string id="Source2NameTitle">Source 2 Name</string>
 	<string id="Source3NameTitle">Source 3 Name</string>
 	<string id="Source1RaTitle">Source 1 R.A. (J2000, decimal hours)</string>
-	<string id="Source1DecTitle">Source 1 Dec. (J2000, decimal degrees)</string>
+	<string id="Source1DecTitle">Source 1 Dec. (J2000, decimal deg)</string>
 	<string id="Source2RaTitle">Source 2 R.A. (J2000, decimal hours)</string>
-	<string id="Source2DecTitle">Source 2 Dec. (J2000, decimal degrees)</string>
+	<string id="Source2DecTitle">Source 2 Dec. (J2000, decimal deg)</string>
 	<string id="Source3RaTitle">Source 3 R.A. (J2000, decimal hours)</string>
-	<string id="Source3DecTitle">Source 3 Dec. (J2000, decimal degrees)</string>
+	<string id="Source3DecTitle">Source 3 Dec. (J2000, decimal deg)</string>
+	<string id="SourceNameSun">Sun</string>
+	<string id="Source1LowElTitle">Source 1 Low El. Limit (decimal deg)</string>
+	<string id="Source2LowElTitle">Source 2 Low El. Limit (decimal deg)</string>
+	<string id="Source3LowElTitle">Source 3 Low El. Limit (decimal deg)</string>
+	<string id="Source1MidElTitle">Source 1 Mid El. Limit (decimal deg)</string>
+	<string id="Source2MidElTitle">Source 2 Mid El. Limit (decimal deg)</string>
+	<string id="Source3MidElTitle">Source 3 Mid El. Limit (decimal deg)</string>
 </strings>

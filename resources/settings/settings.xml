@@ -36,11 +36,17 @@
    			<listEntry value="1">@Strings.SourceTypeRaDec</listEntry>
    		</settingConfig></setting>
 	<setting propertyKey="@Properties.Source1Name" title="@Strings.Source1NameTitle">
-		<settingConfig type="alphaNumeric"></settingConfig></setting>
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.SourceNameSun</listEntry>
+		</settingConfig></setting>
 	<setting propertyKey="@Properties.Source2Name" title="@Strings.Source2NameTitle">
-		<settingConfig type="alphaNumeric"></settingConfig></setting>
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.SourceNameSun</listEntry>
+		</settingConfig></setting>
 	<setting propertyKey="@Properties.Source3Name" title="@Strings.Source3NameTitle">
-		<settingConfig type="alphaNumeric"></settingConfig></setting>
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.SourceNameSun</listEntry>
+		</settingConfig></setting>
 	<setting propertyKey="@Properties.Source1Ra" title="@Strings.Source1RaTitle">
 		<settingConfig type="numeric"></settingConfig></setting>
 	<setting propertyKey="@Properties.Source1Dec" title="@Strings.Source1DecTitle">
@@ -53,4 +59,17 @@
 		<settingConfig type="numeric"></settingConfig></setting>
 	<setting propertyKey="@Properties.Source3Dec" title="@Strings.Source3DecTitle">
 		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source1LowEl" title="@Strings.Source1LowElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source2LowEl" title="@Strings.Source2LowElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source3LowEl" title="@Strings.Source3LowElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source1MidEl" title="@Strings.Source1MidElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source2MidEl" title="@Strings.Source2MidElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.Source3MidEl" title="@Strings.Source3MidElTitle">
+		<settingConfig type="numeric"></settingConfig></setting>
+		
 </settings>
