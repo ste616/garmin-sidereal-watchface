@@ -71,5 +71,11 @@
 		<settingConfig type="numeric"></settingConfig></setting>
 	<setting propertyKey="@Properties.Source3MidEl" title="@Strings.Source3MidElTitle">
 		<settingConfig type="numeric"></settingConfig></setting>
+	<setting propertyKey="@Properties.TopNumberType" title="@Strings.TopNumberTitle">
+		<settingConfig type="list">
+			<listEntry value="0">@Strings.BatteryLevel</listEntry>
+			<listEntry value="1">@Strings.MoonIllumination</listEntry>
+		</settingConfig>
+	</setting>
 		
 </settings>

@@ -36,4 +36,7 @@
 	<string id="Source1MidElTitle">Source 1 Mid El. Limit (decimal deg)</string>
 	<string id="Source2MidElTitle">Source 2 Mid El. Limit (decimal deg)</string>
 	<string id="Source3MidElTitle">Source 3 Mid El. Limit (decimal deg)</string>
+	<string id="TopNumberTitle">Show percentage for</string>
+	<string id="BatteryLevel">Battery Level</string>
+	<string id="MoonIllumination">Moon Illumination</string>
 </strings>

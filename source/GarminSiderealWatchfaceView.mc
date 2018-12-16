@@ -23,6 +23,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	static const MOON_ILLUMINATION_OUTSIDE = 4;
 	static const ELEVATION_TYPE_LOW = 5;
 	static const ELEVATION_TYPE_HIGH = 6;
+	static const DTOR = 0.017453293d;
 
 	var ZERO_RADIANS;
 	var middleX;
@@ -118,6 +119,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
         
         // Calculate the sidereal time.
         var lst = mjdToLst(mjd, (loc[1].toDouble() / 360.0d), 0.0d);
+        moonPosition(mjd);
 
         // Format the time into a string.
         var timeStringLocal = formatTime(clockTime);
@@ -155,7 +157,14 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		
 		// Get the battery level.
 		var watchStats = System.getSystemStats();
-		var batteryString = watchStats.battery.format("%3d") + "%";
+		var topLabelType = Application.Properties.getValue("TopNumberType");
+		var batteryString = "";
+		if (topLabelType == 0) {
+			batteryString = watchStats.battery.format("%3d") + "%";
+		} else if (topLabelType == 1) {
+			var ml = moonIllumination.abs() * 100.0;
+			batteryString = ml.format("%3d") + "%";
+		}
 		var batteryColour = okBatteryColour;
 		if (watchStats.battery <= 20) {
 			batteryColour = lowBatteryColour;
@@ -349,6 +358,19 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		return numberBounds(r, (Math.PI * 2.0d));
 	}
 
+	function FNrange(x) {
+		var b = x / (2.0d * Math.PI);
+		var p = b.abs().toNumber().toDouble();
+		if (b < 0) {
+			p *= -1.0d;
+		}
+		var a = (2.0d * Math.PI) * (b - p);
+		if (a < 0) {
+			a += (2.0d * Math.PI);
+		}
+		return a;
+	}
+
 	// Convert degrees to radians.
 	function degreesToRadians(deg) {
 		return (deg.toDouble() * Math.PI / 180.0d);
@@ -445,10 +467,296 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		return ([ alpha, delta ]);
 	}
 	
+	function polyidl(x, cc) {
+		var polysum = 0.0d;
+		for (var i = 0; i < cc.size(); i++) {
+			polysum += cc[i].toDouble() * Math.pow(x.toDouble(), i.toDouble());
+		}
+		return (polysum);
+	}
+	
+	function whichabs(v, a) {
+		var b = [];
+		for (var i = 0; i < a.size(); i++) {
+			if (a[i].abs() == v) {
+				b.add(i);
+			}
+		}
+		return b;
+	}
+	
+	function multidx(a, b, f) {
+		var o = a;
+		for (var i = 0; i < b.size(); i++) {
+			o[b[i]] *= f;
+		}
+		return o;
+	}
+	
+	function vec_m_num(v, n) {
+		// Multiply a vector by a number.
+		for (var i = 0; i < v.size(); i++) {
+			v[i] = v[i].toDouble() * n.toDouble();
+		}
+		return v;
+	}
+	
+	function vec_m_vec(u, v) {
+		// Multiply a vector by a vector.
+		for (var i = 0; i < u.size(); i++) {
+			u[i] = u[i].toDouble() * v[i].toDouble();
+		}
+		return u;
+	}
+	
+	function vec_a_vec(u, v) {
+		// Add one vector to another.
+		for (var i = 0; i < u.size(); i++) {
+			u[i] = u[i].toDouble() + v[i].toDouble();
+		}
+		return u;
+	}
+	
+	function vec_sin(v) {
+		// Take the sin of a vector.
+		for (var i = 0; i < v.size(); i++) {
+			v[i] = Math.sin(v[i]);
+		}
+		return v;
+	}
+	
+	function vec_cos(v) {
+		// Take the cos of a vector.
+		for (var i = 0; i < v.size(); i++) {
+			v[i] = Math.cos(v[i]);
+		}
+		return v;
+	}
+
+	function vec_sum(v) {
+		// Sum the vector.
+		var s = 0.0d;
+		for (var i = 0; i < v.size(); i++) {
+			s += v[i].toDouble();
+		}
+		return s;
+	}
+	
+	function nutate(mjd) {
+		var t, coeff1, d, coeff2, m, coeff3, mprime, coeff4, f, coeff5;
+		var omega, d_lng, m_lng, mp_lng, f_lng, om_lng, sin_lng, sdelt;
+		var cos_lng, cdelt, n, nut_long, nut_obliq, arg, sarg, carg;
+		
+		t = (mjd + MJD_REFERENCE - JULIAN_DAY_J2000) / JULIAN_DAYS_IN_CENTURY;
+		
+		coeff1 = [ 297.85036,  445267.111480, -0.0019142, 1.0/189474.0 ];
+		d = degreesBounds(polyidl(t, coeff1)) * DTOR;
+		coeff2 = [ 357.52772, 35999.050340, -0.0001603, -1.0/3.0e5 ];
+		m = degreesBounds(polyidl(t, coeff2)) * DTOR;
+		coeff3 = [ 134.96298, 477198.867398, 0.0086972, 1.0/5.625e4 ];
+		mprime = degreesBounds(polyidl(t, coeff3)) * DTOR;
+		coeff4 = [ 93.27191, 483202.017538, -0.0036825, -1.0/3.27270e5 ];
+		f = degreesBounds(polyidl(t, coeff4)) * DTOR;
+		coeff5 = [ 125.04452, -1934.136261, 0.0020708, 1.0/4.5e5 ];
+		omega = degreesBounds(polyidl(t, coeff5)) * DTOR;
+		d_lng = [ 0, -2, 0, 0, 0, 0, -2, 0, 0, -2, -2, -2, 0, 2, 0, 2, 0,
+				  0, -2, 0, 2, 0, 0, -2, 0, -2, 0, 0, 2, -2, 0, -2, 0, 0,
+				  2, 2, 0, -2, 0, 2, 2, -2, -2, 2, 2, 0, -2, -2, 0, -2, -2,
+				  0, -1, -2, 1, 0, 0, -1, 0, 0, 2, 0, 2 ];
+		m_lng = [ 0, 0, 0, 0, 1, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+				  0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 1, 0, -1, 0,
+				  0, 0, 1, 1, -1, 0, 0, 0, 0, 0, 0, -1, -1, 0, 0, 0, 1, 0,
+				  0, 1, 0, 0, 0, -1, 1, -1, -1, 0, -1 ];
+		mp_lng = [ 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, -1, 0, 1, -1, -1, 1,
+				   2, -2, 0, 2, 2, 1, 0, 0, -1, 0, -1, 0, 0, 1, 0, 2, -1, 1,
+				   0, 1, 0, 0, 1, 2, 1, -2, 0, 1, 0, 0, 2, 2, 0, 1, 1, 0, 0,
+				   1, -2, 1, 1, 1, -1, 3, 0 ];
+		f_lng = [ 0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 2, 2, 0, 0, 2, 0, 2, 0,
+				  2, 2, 2, 0, 2, 2, 2, 2, 0, 0, 2, 0, 0, 0, -2, 2, 2, 2, 0,
+				  2, 2, 0, 2, 2, 0, 0, 0, 2, 0, 2, 0, 2, -2, 0, 0, 0, 2, 2,
+				  0, 0, 2, 2, 2, 2 ];
+		om_lng = [ 1, 2, 2, 2, 0, 0, 2, 1, 2, 2, 0, 1, 2, 0, 1, 2, 1, 1, 0,
+				   1, 2, 2, 0, 2, 0, 0, 1, 0, 1, 2, 1, 1, 1, 0, 1, 2, 2, 0,
+				   2, 1, 0, 2, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 2,
+				   0, 0, 2, 2, 2, 2 ];
+		sin_lng = [ -171996, -13187, -2274, 2062, 1426, 712, -517, -386, 
+					-301, 217, -158, 129, 123, 63, 63, -59, -58, -51, 48, 
+					46, -38, -31, 29, 29, 26, -22, 21, 17, 16, -16, -15, 
+					-13, -12, 11, -10, -8, 7, -7, -7, -7, 6, 6, 6, -6, -6,
+					5, -5, -5, -5, 4, 4, 4, -4, -4, -4, 3, -3, -3, -3, -3,
+					-3, -3, -3 ];
+		sdelt = [ -174.2, -1.6, -0.2, 0.2, -3.4, 0.1, 1.2, -0.4, 0, -0.5, 
+				   0, 0.1, 0, 0, 0.1, 0, -0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+				   0, -0.1, 0, 0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				   0, 0 ];
+		cos_lng = [ 92025, 5736, 977, -895, 54, -7, 224, 200, 129, -95, 0,
+				    -70, -53, 0, -33, 26, 32, 27, 0, -24, 16, 13, 0, -12,
+				    0, 0, -10, 0, -8, 7, 9, 7, 6, 0, 5, 3, -3, 0, 3, 3,
+				    0, -3, -3, 3, 3, 0, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0,
+				    0, 0, 0, 0, 0, 0 ];
+		cdelt = [ 8.9, -3.1, -0.5, 0.5, -0.1, 0.0, -0.6, 0.0, -0.1, 0.3,
+				  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+				  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
+		arg = vec_a_vec(vec_m_num(d_lng, d), vec_m_num(m_lng, m));
+		arg = vec_a_vec(arg, vec_m_num(mp_lng, mprime));
+		arg = vec_a_vec(arg, vec_m_num(f_lng, f));
+		arg = vec_a_vec(arg, vec_m_num(om_lng, omega));
+		sarg = vec_sin(arg);
+		carg = vec_cos(arg);
+		nut_long = 0.0001d * vec_sum(vec_m_vec((vec_a_vec(vec_m_num(sdelt, t), sin_lng)), sarg));
+		nut_obliq = 0.0001d * vec_sum(vec_m_vec((vec_a_vec(vec_m_num(cdelt, t), cos_lng)), carg));
+		return [ nut_long, nut_obliq ];
+	}
+	
+	// Calculate the Moon location.
+	function moonPosition(mjd) {
+		var t, ra, dec, d_lng, m_lng, mp_lng, f_lng, sin_lng, cos_lng;
+		var d_lat, m_lat, mp_lat, f_lat, sin_lat, coeff0, lprimed, coeff1, d, m;
+		var coeff3, coeff4, f, mprime, e, e2, ecorr1, ecorr2, ecorr3, ecorr4;
+		var a1, a2, a3, suml_add, sumb_add, geolong, geolat, dis, sinlng;
+		var coslng, sinlat, arg, tmp, nlong, elong, lambda, beta, c, epsilon;
+		var eps, lprime, coeff2;
+		
+		t = (mjd + MJD_REFERENCE - JULIAN_DAY_J2000) / JULIAN_DAYS_IN_CENTURY;
+		d_lng = [ 0, 2, 2, 0, 0, 0, 2, 2, 2, 2, 0, 1, 0, 2, 0, 0,
+				  4, 0, 4, 2, 2, 1, 1, 2, 2, 4, 2, 0, 2, 2, 1, 2,
+				  0, 0, 2, 2, 2, 4, 0, 3, 2, 4, 0, 2, 2, 2, 4, 0,
+				  4, 1, 2, 0, 1, 3, 4, 2, 0, 1, 2, 2 ];
+		m_lng = [ 0, 0, 0, 0, 1, 0, 0, -1, 0, -1, 1, 0, 1, 0, 0, 0,
+				  0, 0, 0, 1, 1, 0, 1, -1, 0, 0, 0, 1, 0, -1, 0, 
+    			 -2, 1, 2, -2, 0, 0, -1, 0, 0, 1, -1, 2, 2, 1, -1, 0,
+    			 0, -1, 0, 1, 0, 1, 0, 0, -1, 2, 1, 0, 0 ];
+    	mp_lng = [ 1, -1, 0, 2, 0, 0, -2, -1, 1, 0, -1, 0, 1, 0, 1, 1,
+    			  -1, 3, -2, -1, 0, -1, 0, 1, 2, 0, -3, -2, -1, -2, 1,
+    			  0, 2, 0, -1, 1, 0, -1, 2, -1, 1, -2, -1, -1, -2, 0,
+    			  1, 4, 0, -2, 0, 2, 1, -2, -3, 2, 1, -1, 3,-1 ];
+    	f_lng = [ 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, -2, 2, -2, 0,
+    			  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
+    			  -2, 2, 0, 2, 0, 0, 0, 0, 0, 0, -2, 0, 0, 0, 0, -2, -2,
+    			  0, 0, 0, 0, 0, 0, 0, -2 ];
+    	sin_lng = [ 288774.0d, 1274027.0d, 658314.0d, 213618.0d,
+    				-185116.0d, -114332.0d, 58793.0d, 57066.0d,
+    				53322.0d, 45758.0d, -40923.0d, -34720.0d,
+    				-30383.0d, 15327.0d, -12528.0d, 10980.0d,
+    				10675.0d, 10034.0d, 8548.0d, -7888.0d,
+    				-6766.0d, -5163.0d, 4987.0d, 4036.0d,
+    				3994.0d, 3861.0d, 3665.0d, -2689.0d,
+    				-2602.0d, 2390.0d, -2348.0d, 2236.0d, 
+    				-2120.0d, -2069.0d, 2048.0d, -1773.0d,
+    				-1595.0d, 1215.0d, -1110.0d, -892.0d,
+    				-810.0d, 759.0d, -713.0d, -700.0d, 691.0d,
+    				596.0d, 549.0d, 537.0d, 520.0d, -487.0d, 
+    				-399.0d, -381.0d, 351.0d, -340.0d, 330.0d,
+    				327.0d, -323.0d, 299.0d, 294.0d, 0.0d ];
+    	cos_lng = [ -20905355.0d, -3699111.0d, -2955968.0d, -569925.0d,
+    				48888.0d, -3149.0d, 246158.0d, -152138.0d, 
+    				-170733.0d, -204586.0d, -129620.0d, 108743.0d,
+    				104755.0d, 10321.0d, 0.0d, 79661.0d, -34782.0d,
+    				-23210.0d, -21636.0d, 24208.0d, 30824.0d, -8379.0d,
+    				-16675.0d, -12831.0d, -10445.0d, -11650.0d,
+    				14403.0d, -7003.0d, 0.0d, 10056.0d, 6322.0d, 
+    				-9884.0d,5751.0d, 0.0d, -4950.0d, 4130.0d, 0.0d,
+    				-3958.0d, 0.0d, 3258.0d, 2616.0d, -1897.0d, -2117.0d,
+    				2354.0d, 0.0d, 0.0d, -1423.0d, -1117.0d, -1571.0d,
+    				-1739.0d, 0.0d, -4421.0d, 0.0d, 0.0d, 0.0d, 0.0d,
+    				1165.0d, 0.0d, 0.0d, 8752.0d ];
+		d_lat = [ 0, 0, 0, 2, 2, 2, 2, 0, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0,
+				  4, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 4, 0, 4, 2, 2, 2, 2,
+				  0, 2, 2, 2, 2, 4, 2, 2, 0, 2, 1, 1, 0, 2, 1, 2, 0, 4,
+				  4, 1, 4, 1, 4, 2 ];
+		m_lat = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, -1, -1,
+				  1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, -1,
+				  0, 0, 0, 0, 1, 1, 0, -1, -2, 0, 1, 1, 1, 1, 1, 0, -1,
+				  1, 0, -1, 0, 0, 0, -1, -2 ];
+		mp_lat = [ 0, 1, 1, 0, -1, -1, 0, 2, 1, 2, 0, -2, 1, 0, -1, 0,
+				  -1, -1, -1, 0, 0, -1, 0, 1, 1, 0, 0, 3, 0, -1, 1, -2,
+				   0, 2, 1, -2, 3, 2, -3, -1, 0, 0, 1, 0, 1, 1, 0, 0,
+				  -2, -1, 1, -2, 2, -2, -1, 1, 1, -1, 0, 0 ];
+		f_lat = [ 1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, 1, -1, 1, 
+				  1, -1, -1, -1, 1, 3, 1, 1, 1, -1, -1, -1, 1, -1, 1,
+				 -3, 1, -3, -1, -1, 1, -1, 1, -1, 1, 1, 1, 1, -1, 3, -1,
+				 -1, 1, -1, -1, 1, -1, 1, -1, -1, -1, -1, -1, -1, 1 ];
+		sin_lat = [ 5128122, 280602, 277693, 173237, 55413, 46271, 
+					32573, 17198, 9266, 8822, 8216, 4324, 4200,
+					-3359, 2463, 2211, 2065, -1870, 1828, -1794,
+					-1749, -1565, -1491, -1475, -1410, -1344,
+					-1335, 1107, 1021, 833, 777, 671, 607, 596,
+					491, -451, 439, 422, 421, -366, -351, 331, 315,
+					302, -283, -229, 223, 223, -220, -220, -185,
+					181, -177, 176, 166, -164, 132, -119, 115, 107.0 ];
+		coeff0 = [ 218.3164477d, 481267.88123421d, -0.0015786d, 
+				   1.0d/538841.0d, -1.0d/6.5194e7d ];
+		lprimed = degreesBounds(polyidl(t, coeff0));
+		lprime = lprimed * DTOR;
+		coeff1 = [ 297.8501921, 445267.1114034, -0.0018819, 1.0/545868.0, 
+    			   -1.0/1.13065e8 ];
+		d = degreesBounds(polyidl(t, coeff1)) * DTOR;
+		coeff2 = [ 357.5291092, 35999.0502909, -0.0001536, 1.0/2.449e7 ];
+		m = degreesBounds(polyidl(t, coeff2)) * DTOR;
+		coeff3 = [ 134.9633964, 477198.8675055, 0.0087414, 1.0/6.9699e4, 
+    			   -1.0/1.4712e7 ];
+		mprime = degreesBounds(polyidl(t, coeff3)) * DTOR;
+		coeff4 = [ 93.2720950, 483202.0175233, -0.0036539, -1.0/3.526e7, 
+    			   1.0/8.6331e8 ];
+		f = degreesBounds(polyidl(t, coeff4)) * DTOR;
+		e = 1.0d - 0.002516d * t - 7.4e-6d * t * t;
+		e2 = e * e;
+		ecorr1 = whichabs(1, m_lng);
+		ecorr2 = whichabs(1, m_lat);
+		ecorr3 = whichabs(2, m_lng);
+		ecorr4 = whichabs(2, m_lat);
+		a1 = (119.75d + 131.849d * t) * DTOR;
+		a2 = (53.09d + 479624.290d * t) * DTOR;
+		a3 = (313.45d + 481266.484d * t) * DTOR;
+		suml_add = (3958.0d * Math.sin(a1) + 1962.0d * Math.sin(lprime - f) + 
+					318.0d * Math.sin(a2));
+		sumb_add = (-2235.0d * Math.sin(lprime) + 382.0d * Math.sin(a3) +
+					175.0d * Math.sin(a1 - f) + 175.0d * Math.sin(a1 + f) +
+					127.0d * Math.sin(lprime - mprime) -
+					115.0d * Math.sin(lprime + mprime));
+		sinlng = multidx(sin_lng, ecorr1, e);
+		coslng = multidx(cos_lng, ecorr1, e);
+		sinlat = multidx(sin_lat, ecorr2, e);
+		sinlng = multidx(sinlng, ecorr3, e2);
+		coslng = multidx(coslng, ecorr3, e2);
+		sinlat = multidx(sinlat, ecorr4, e2);
+		arg = vec_a_vec(vec_m_num(d_lng, d), vec_m_num(m_lng, m));
+		arg = vec_a_vec(arg, vec_m_num(mp_lng, mprime));
+		arg = vec_a_vec(arg, vec_m_num(f_lng, f));
+		geolong = lprimed + (vec_sum(vec_m_vec(sinlng, vec_sin(arg))) + suml_add) / 1.0e6;
+		dis = 385000.56d + vec_sum(vec_m_vec(coslng, vec_cos(arg))) / 1.0e3;
+		arg = vec_a_vec(vec_m_num(d_lat, d), vec_m_num(m_lat, m));
+		arg = vec_a_vec(arg, vec_m_num(mp_lat, mprime));
+		arg = vec_a_vec(arg, vec_m_num(f_lat, f));
+		geolat = (vec_sum(vec_m_vec(sinlat, vec_sin(arg))) + sumb_add) / 1.0e6;
+		tmp = nutate(mjd);
+		nlong = tmp[0];
+		elong = tmp[1];
+		geolong += degreesBounds(nlong / 3.6e3);
+		lambda = geolong * DTOR;
+		beta = geolat * DTOR;
+		c = [ 21.448, -4680.93, -1.55, 1999.25, -51.38, -249.67,
+			 -39.05, 7.12, 27.87, 5.79, 2.45 ];
+		epsilon = 23.433333333d + polyidl(t / 1.0e2, c) / 3600.0d;
+		eps = (epsilon + elong / 3600.0d) * DTOR;
+		ra = Math.atan2(Math.sin(lambda) * Math.cos(eps) -
+						Math.tan(beta) * Math.sin(eps), Math.cos(lambda));
+		dec = Math.asin(Math.sin(beta) * Math.cos(eps) +
+						Math.cos(beta) * Math.sin(eps) * Math.sin(lambda));
+		ra /= DTOR;
+		dec /= DTOR;
+		
+		System.print("Moon ra = " + ra.format("%.5f") + "\n");
+		System.print("Moon dec = " + dec.format("%.5f") + "\n");
+		
+	}
+	
 	// Calculate the Moon phase.
 	var priorMoonMjd = 0.0d;
 	// The Moon's phase.
-	var lunPhase = [ 0.0d, 0.0d ];
+	var lunPhase = 0.0d;
 	function calculateMoonPhase(mjd) {
 		// Check if we need to calculate the Moon's phase.
 		var calcRequired = false;
@@ -472,7 +780,10 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 	function calculateMoonIllumination(moonPhase) {
 		// If the phase is below 0.5 it's waxing, waning above it.
 		var illum = 1.0d - (moonPhase * 2.0d - 1.0d).abs();
-		return (illum * ((moonPhase < 0.5) ? -1.0d : 1.0d));
+		if (moonPhase < 0.5) {
+			illum *= -1.0d;
+		}
+		return (illum);
 	}
 
 	// Calculate the hour angle for a rise or set of a source with specified
@@ -682,6 +993,9 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		var ellipseColour = moonColour;
 		if (moonInverted) {
 			ellipseColour = backgroundColour;
+			// We have to draw non-illuminated sides too.
+			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
+			dc.fillCircle(middleX, middleY, innerRadius);
 		}
 		var xRadius = innerRadius;
 		if (illumination == MOON_ILLUMINATION_INSIDE) {
@@ -704,11 +1018,7 @@ class GarminSiderealWatchfaceView extends WatchUi.WatchFace {
 		if (xRadius > 0) {
 			dc.setColor(ellipseColour, Graphics.COLOR_TRANSPARENT);
 			dc.fillEllipse(middleX, middleY, xRadius, innerRadius); 
-		} else if (moonInverted) {
-			// We have to draw non-illuminated sides too.
-			dc.setColor(moonColour, Graphics.COLOR_TRANSPARENT);
-			dc.fillCircle(middleX, middleY, innerRadius);
-		}	
+		}
 			
 		// Reset the clip.
 		dc.clearClip();

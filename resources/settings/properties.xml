@@ -1,7 +1,7 @@
 <properties>
 
     <property id="BackgroundColor" type="number">0xFFFFFF</property>
-    <property id="SiderealLocationType" type="number">0</property>
+    <property id="SiderealLocationType" type="number">1</property>
     <property id="LocationName" type="number">0</property>
     <property id="LocationLatitude" type="float">-30.3128846</property>
     <property id="LocationLongitude" type="float">149.5501388</property>
@@ -23,4 +23,5 @@
 	<property id="Source1MidEl" type="float">0.0</property>
 	<property id="Source2MidEl" type="float">30.0</property>
 	<property id="Source3MidEl" type="float">30.0</property>
+	<property id="TopNumberType" type="number">0</property>
 </properties>
